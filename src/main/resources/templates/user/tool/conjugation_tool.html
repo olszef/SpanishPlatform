@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="user/fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Conjugate verb</h1>
+									</header>
+									
+									<p>This tool lets you conjugate any Spanish verb. Write the verb in the search bar and hit the button. Below you will see the verb's conjugation forms in different Spanish modes and tenses.</p>
+									
+								<!-- Search -->
+									<section id="verb-conjugation-search" class="alt">
+										<form method="get" th:action="@{/tool/conjugation/find}">
+											<div class="row">
+												<div id="conjugation-search-pane" class="col-6 col-12-small">													
+													<input type="text" placeholder="Search" name="wordText"/>													
+												</div>
+												<div><button type="submit">conjugate</button></div>
+											</div>
+										</form>
+									</section>
+									
+								<!-- Search Results-->
+									<div th:if="${searchStatus == 'empty'}">
+										<span>Conjugation not found...</span>											
+									</div>
+								</section>
+
+								<section th:if="${searchStatus == 'OK'}">
+									<div th:each="tempMode : ${allModesForms}">
+										<header class="major">
+											<h2 th:text="${modeMap.get(__${tempMode.key}__)}" />
+										</header>
+										<div class="posts">
+											<article th:each="tempConjugation : ${tempMode.value}">
+												<h3 th:text="${tenseMap.get(__${tempConjugation.tenseId}__)}" />
+												<table class="table table-bordered table-striped">
+													<tbody>
+														<tr>				
+															<td>yo</td>
+															<td th:text="${tempConjugation.single1}" />					
+														</tr>
+														<tr>				
+															<td>tu</td>
+															<td th:text="${tempConjugation.single2}" />					
+														</tr>
+														<tr>				
+															<td>el</td>
+															<td th:text="${tempConjugation.single3}" />					
+														</tr>
+														<tr>				
+															<td>nosotros</td>
+															<td th:text="${tempConjugation.plural1}" />					
+														</tr>
+														<tr>				
+															<td>vosotros</td>
+															<td th:text="${tempConjugation.plural2}" />					
+														</tr>
+														<tr>				
+															<td>ellos</td>
+															<td th:text="${tempConjugation.plural3}" />					
+														</tr>						
+													</tbody>		
+												</table>
+											</article>
+										</div>
+									</div>
+								</section>								
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

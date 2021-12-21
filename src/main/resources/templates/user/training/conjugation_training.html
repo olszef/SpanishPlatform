@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/conjugation_training.css}">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="user/fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Conjugate verb</h1>
+									</header>
+									
+									<p>This tool lets you conjugate any Spanish verb. Write the verb in the search bar and hit the button. Below you will see the verb's conjugation forms in different Spanish modes and tenses.</p>
+									
+								<!-- Search -->
+									<section id="verb-conjugation-search" class="alt">
+										<div class="row gtr-200">
+											<div class="col-6 col-12-medium">
+												<form method="get" th:action="@{/training/conjugation/init}" th:object="${conjugationTrainingForm}">
+													<div class="row gtr-uniform">
+														<div class="col-4 col-12-small">
+															<input type="radio" id="conjugation-training-random" name="conjugationTrainingOption" value="random" th:checked="*{conjugationTrainingOption} == random" onclick="switchCustomAndRandom(this)">
+															<label for="conjugation-training-random">Random</label>
+														</div>
+														<div class="col-4 col-12-small">
+															<input type="radio" id="conjugation-training-custom" name="conjugationTrainingOption" value="custom" th:checked="*{conjugationTrainingOption} == custom" onclick="switchCustomAndRandom(this)">
+															<label for="conjugation-training-custom">Custom</label>
+														</div>
+														
+														<div class="col-12">
+															<select th:field="*{searchLanguageId}" id="conjugate-training-language-start">
+																<option th:each="language : ${languages}"
+																	th:value="${language.languageId}"
+																	th:text="${language.languageText}"
+																	></option>
+															</select>												
+														</div>											
+														
+														<div class="col-12">													
+															<input type="text" placeholder="Search" th:field="*{searchVerb}" id="conjugation-training-search-pane" disabled/>													
+														</div>
+														
+														<div class="col-6 col-12-small">
+															<select th:field="*{searchModeId}" id="conjugate-training-mode-start">
+																<option th:each="mode : ${conjugationModes}"
+																	th:value="${mode.modeId}"
+																	th:text="${mode.modeText}"
+																	></option>
+															</select>												
+														</div>
+														
+														<div class="col-6 col-12-small">
+															<select th:field="*{searchTenseId}" id="conjugate-training-tense-start">
+																<option th:each="tense : ${conjugationTenses}"
+																	th:value="${tense.tenseId}"
+																	th:text="${tense.tenseText}"
+																	></option>
+															</select>												
+														</div>
+														
+														<div>
+															<button type="submit" name="find" value="find" id="conjugation-training-draw-btn">draw</button>
+														</div>																													
+														
+													</div>
+												</form>											
+											</div>
+											
+											<div class="col-6 col-12-medium"></div>
+										</div>
+									</section>
+
+									
+								<!-- Search Results-->
+									<div th:if="${searchStatus == 'error'}">
+										<span>Verb not found...</span>											
+									</div>
+								</section>
+
+								<section th:if="${searchStatus == 'OK'}">
+									<div>
+										<header class="major">
+											<h2>Fill out the forms of the verb</h2>
+										</header>										
+										
+										<form id="conjugation-training-form">
+											<div class="row" th:object="${conjugationTrainingForm}">
+												<h4>Verb:</h4>
+												<div>
+													<span th:text="*{searchVerb}" />
+												</div>
+												
+												<div th:if="*{searchVerb} != *{spanishVerb}">|</div>										
+
+												<div th:if="*{searchVerb} != *{spanishVerb}">
+													<a href="javascript: void(0);" onclick="showSpanishVerb(this)">Show in Spanish</a>
+													<span th:text="*{spanishVerb}" hidden/>
+												</div>
+																																													
+											</div>
+											<h4>Basic forms</h4>										
+											<div class="row" th:object="${verbBaseForms}" id="VerbBaseForms">
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="indicativo"/>	
+													<input type="hidden" th:field="*{indicativo}"/>												
+												</div>
+														
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="participio"/>
+													<input type="hidden" th:field="*{participio}"/>												
+												</div>
+														
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="gerundio"/>
+													<input type="hidden" th:field="*{gerundio}"/>												
+												</div>
+											</div>
+											
+											<br />
+											<br />
+											
+											<h4>Conjugation in given mode and tense</h4>
+											<div class="row" th:object="${verbSingleConjugation}" id="VerbSingleConjugation">										
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="yo"/>
+													<input type="hidden" th:field="*{single1}"/>													
+												</div>
+														
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="tu"/>
+													<input type="hidden" th:field="*{single2}"/>													
+												</div>
+														
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="el / ella" />
+													<input type="hidden" th:field="*{single3}"/>													
+												</div>
+												
+												<div class="col-12">&nbsp;</div>
+												
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="nosotros"/>
+													<input type="hidden" th:field="*{plural1}"/>												
+												</div>
+														
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="vosotros"/>
+													<input type="hidden" th:field="*{plural2}"/>													
+												</div>
+														
+												<div class="col-4 col-12-medium">													
+													<input type="text" placeholder="ellos / ellas"/>
+													<input type="hidden" th:field="*{plural3}"/>												
+												</div>												
+											</div>
+											
+											<div class="col-12">&nbsp;</div>
+											
+											<div id="conjugation-all-correct-text" class="center-object" hidden><div class="box text-all-correct"><p>All answers are correct!</p></div></div>																							
+										</form>
+									</div>
+								</section>								
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/user/assets/js/training_conjugate_verb.js}"></script>
+
+	</body>
+</html>

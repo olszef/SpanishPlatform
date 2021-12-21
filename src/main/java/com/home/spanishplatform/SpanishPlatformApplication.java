@@ -1,9 +1,11 @@
-package com.olszef.spanishplatform;
+package com.home.spanishplatform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+//@SpringBootApplication
+@SpringBootApplication(exclude={SecurityAutoConfiguration.class}) //TODO: disable spring security
 public class SpanishPlatformApplication {
 
 	public static void main(String[] args) {

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Employee Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Conjugation Directory</h3>
+	<hr>
+	
+	<!-- Add a button -->
+	<a th:href="@{/conjugation/}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Employee
+	</a>
+	
+	
+	<table class="table table-bordered table-striped">
+		<div th:if="${responseData == 'empty'}">
+			<span>Verb not found</span>
+		</div>
+		<tbody th:each="tempConjugation : ${conjugationData}">
+			<tr>				
+				<td>yo</td>
+				<td th:text="${tempConjugation.single1}" />					
+			</tr>
+			<tr>				
+				<td>tu</td>
+				<td th:text="${tempConjugation.single2}" />					
+			</tr>
+			<tr>				
+				<td>el</td>
+				<td th:text="${tempConjugation.single3}" />					
+			</tr>
+			<tr>				
+				<td>nosotros</td>
+				<td th:text="${tempConjugation.plural1}" />					
+			</tr>
+			<tr>				
+				<td>vosotros</td>
+				<td th:text="${tempConjugation.plural2}" />					
+			</tr>
+			<tr>				
+				<td>ellos</td>
+				<td th:text="${tempConjugation.plural3}" />					
+			</tr>						
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="user/fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Train numbers</h1>
+									</header>
+									
+									<p>You can train numbers here.  Get the numbers, name them in Spanish and then check your answers. You will get a green or red mark on the right saying if you named the number well.</p>
+									
+									<h4>Possibilities</h4>
+									<ul>
+										<li> draw 10 numbers from a given or a default range (0 - 9999)</li>
+										<li> get up to 10 sequential numbers from a given or a default range (1 - 10)</li>
+									</ul>
+								<!-- Search -->
+									<section id="verb-conjugation-search" class="alt">
+										<form method="get" th:action="@{/numbers/getList}">
+											<div class="row gtr-uniform">
+												<div id="numbers-range-from">													
+													<input type="text" placeholder="min" name="rangeFrom" th:value="*{rangeFrom}"/>													
+												</div>
+												<div> <span class="input-like-text">-</span> </div>
+												<div id="numbers-range-to">													
+													<input type="text" placeholder="max" name="rangeTo" th:value="*{rangeTo}"/>													
+												</div>
+												
+												<div><button type="submit" name="action" value="draw">draw</button></div>
+												<div><button type="submit" name="action" value="range" class="primary">get sequential range</button></div>
+											</div>
+										</form>
+									</section>
+									
+								</section>
+
+								<section th:if="${trainingStatus == 'OK'}">
+									<header class="major">
+										<h2>Write the following numbers</h2>
+									</header>
+									<form method="get" th:action="@{/numbers/checkAnswers}" th:object="${trainingNumbersForm}">
+										<table class="table table-bordered table-striped">
+											<tbody>
+												<tr th:each="number, itemStat : *{trainingNumbers}">				
+													<td class="input-like-text">
+														<span th:text="*{trainingNumbers[__${itemStat.index}__].numberName.numberId}" />
+														<input th:field="*{trainingNumbers[__${itemStat.index}__].numberName.numberId}" type="hidden"/>
+													</td>
+													<td class="td-filler-20" />
+													<td><input type="text" placeholder="..." th:field="*{trainingNumbers[__${itemStat.index}__].numberName.numberText}"/></td>
+													<td class="td-filler-20" />
+													<td class="input-like-text">
+														<div th:class="*{trainingNumbers[__${itemStat.index}__].isNumberChecked} ? '' : 'hidden-item'">
+															<div th:class="*{trainingNumbers[__${itemStat.index}__].isNumberCorrectlyNamed} ? 'fontawesome-icon-correct' : 'fontawesome-icon-incorrect'">
+																<i th:class="*{trainingNumbers[__${itemStat.index}__].isNumberCorrectlyNamed} ? 'far fa-check-circle' : 'far fa-times-circle'"></i>
+															</div>
+														</div>
+													</td>					
+												</tr>					
+											</tbody>		
+										</table>
+										
+										<div>
+											<button type="submit" name="check" th:value="check">Check</button>
+											<button type="reset" name="reset" th:value="reset" class="primary">Reset</button>
+										</div>
+										
+									</form>
+								</section>
+								<section th:if="${trainingStatus == 'error'}">
+									<span th:text="${errorMessage}" />
+								</section>							
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

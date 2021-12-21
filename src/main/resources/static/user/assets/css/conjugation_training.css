@@ -1,0 +1,7 @@
+  .correct-conjugation {
+    border-color: #7FFF00;
+    box-shadow: 0 0 0 2px #7FFF00; }
+
+  .wrong-conjugation {
+    border-color: #DC143C;
+    box-shadow: 0 0 0 2px #DC143C; }

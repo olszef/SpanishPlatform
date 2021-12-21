@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="user/fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Dictionary</h1>
+									</header>
+									
+									<p>This is a simple dictionary. You can look for the words you need. It is possible to translate from desired language to Spanish or the other way around.</p>
+									
+								<!-- Search -->
+									<section id="dictionary" class="alt">
+										<form method="get" th:action="@{/translation/find}" th:object="${translationSearch}">
+											<div class="row">
+												<div id="search-pane" class="col-6 col-12-small">													
+													<input type="text" placeholder="Search" th:field="*{wordText}"/>													
+												</div>
+												
+												<div id="translate-from">
+													<select th:field="*{languageIdFrom}" id="languageFrom" onchange="forceSpanishLanguage(this)">
+														<option th:each="languageFrom : ${languages}"
+															th:value="${languageFrom.languageId}"
+															th:text="${languageFrom.languageText}"
+															th:selected="${languageFrom.languageId} == ${translationSearch.languageIdFrom} ? true : false"></option>
+													</select>
+												</div>									
+												
+												<div>
+													<a href="#" class="button primary icon solid fa-sync-alt custom-icon-solo" onclick="swapTranslationLanguages()"></a>
+												</div>
+	
+												<div id="translate-to">
+													<select th:field="*{languageIdTo}" id="languageTo" onchange="forceSpanishLanguage(this)">
+														<option th:each="languageTo : ${languages}"
+															th:value="${languageTo.languageId}"
+															th:text="${languageTo.languageText}"
+															th:selected="${languageTo.languageId} == ${translationSearch.languageIdTo} ? true : false"></option>
+													</select>
+												</div>	
+												<div><button type="submit">translate</button></div>
+											</div>
+										</form>
+									</section>
+									
+								<!-- Search Results-->
+									<div th:if="${searchStatus == 'empty'}">
+										<span>Translation for </span><span th:text="${translationSearch.wordText}" /><span> not found...</span>											
+									</div>
+				
+									<div th:if="${searchStatus == 'OK'}">
+										<span>Translation for </span><span th:text="${translationSearch.wordText}" />
+									</div>
+									<table class="table table-bordered table-striped">					
+										<tbody th:each="translatedWord : ${translatedWords}">										
+											<tr>				
+												<td th:text="${translatedWord.wordText}" />					
+											</tr>						
+										</tbody>		
+									</table>										
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

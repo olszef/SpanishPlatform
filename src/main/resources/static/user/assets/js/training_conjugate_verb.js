@@ -1,15 +1,22 @@
 function switchCustomAndRandom (element) {
-	if (element == null || element.id == "conjugation-training-random") {
-		document.getElementById("conjugation-training-search-pane").disabled = true;
+	var randomRadio = document.getElementById("conjugation-training-random");
+	var searchWord = document.getElementById("conjugation-training-search-pane");
+	var searchLanguage = document.getElementById("conjugate-training-language-start");
+	if (randomRadio.checked) {		
+		searchLanguage.options[0].selected = true;
+		searchLanguage.disabled = true;		
+		searchWord.value = "";
+		searchWord.disabled = true;
 	} else {
-		document.getElementById("conjugation-training-search-pane").disabled = false;
+		searchLanguage.disabled = false;
+		searchWord.disabled = false;
 	}	
 }
 
 $(document).ready(function() {
 	switchCustomAndRandom(null);
 	
-	var trainingForm = document.getElementById("conjugation-training-form");
+	var trainingForm = document.getElementById("conjugation-training-practice-inputs");
 	
 	if (trainingForm != null) {
 		var trainingInputs = trainingForm.getElementsByTagName("input");
@@ -20,8 +27,34 @@ $(document).ready(function() {
 		  }		
 		}		
 	}
-
+	
+	$('#conjugate-training-mode-start').on('change', getTenseListDropdown);
+	//getTenseListDropdown();
 });
+
+function getTenseListDropdown() {
+	var $modeDropdown = $('#conjugate-training-mode-start');
+	var modeSelectedValue = $modeDropdown.val();
+	if (modeSelectedValue > 0) {
+		var $tenseDropdown = $('#conjugate-training-tense-start');
+		var tenseLastValue = $tenseDropdown.value;
+		$.ajax({
+			url: '/training/conjugation/tenseDropdownOptions',
+			data: {modeDropdownValue: modeSelectedValue},
+			success: function (response) {
+				$tenseDropdown.empty();
+				$.each(response, function (index, listValue) {
+					$tenseDropdown.append('<option value="' + listValue.tenseId + '">' + listValue.tenseText + '</option>');
+				});
+				document.getElementById("conjugate-training-tense-start").disabled = false;
+			}
+		});
+		
+		if (tenseLastValue > 0) {
+			$tenseDropdown.value = tenseLastValue;
+		}
+	}
+}
 
 function checkConjugation() {
 	var answer = this.nextElementSibling;
@@ -42,7 +75,7 @@ function checkConjugation() {
 }
 
 function checkAllFields() {
-	var trainingForm = document.getElementById("conjugation-training-form");
+	var trainingForm = document.getElementById("conjugation-training-practice-inputs");
 
 	if (trainingForm != null) {
 		var trainingInputs = trainingForm.getElementsByTagName("input");

@@ -1,5 +1,6 @@
 package com.home.spanishplatform.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import com.home.spanishplatform.entity.ConjugationMode;
 import com.home.spanishplatform.entity.ConjugationTense;
 import com.home.spanishplatform.entity.Dictionary;
 import com.home.spanishplatform.entity.Verb;
+import com.home.spanishplatform.entity.dto.FullConjugationDto;
 
 @Service
 public class ConjugationServiceImpl implements ConjugationService {
@@ -71,8 +73,8 @@ public class ConjugationServiceImpl implements ConjugationService {
 	}
 
 	@Override
-	public List<ConjugationTense> findAllConjugationTenses() {
-		return conjugationTenseRepository.findAll();
+	public List<ConjugationTense> findAllConjugationTensesPerMode(int modeId) {
+		return conjugationTenseRepository.findByModeIdOrderByTenseIdAsc(modeId);
 	}
 
 	@Override
@@ -95,4 +97,38 @@ public class ConjugationServiceImpl implements ConjugationService {
 		// TODO Auto-generated method stub
 		return verbRepository.findById(verbId);
 	}
+	
+	@Override
+	public List<Verb> findRandomSpanishVerbs(int requestCount) {
+		int recordCount = (int) verbRepository.count();
+		List<Verb> randomVerbs = new ArrayList<Verb>();
+		
+		if (requestCount >= recordCount) {
+			randomVerbs = verbRepository.findAll();
+		} else {
+			int minWordId = verbRepository.findFirstByOrderByVerbIdAsc().getVerbId();
+			int maxWordId = verbRepository.findFirstByOrderByVerbIdDesc().getVerbId();
+			int randomRange = maxWordId - minWordId + 1;						
+			
+			List<Integer> excludedVerbIds = new ArrayList<Integer>();
+			excludedVerbIds.add(0);
+			
+			Verb fetchedVerb;
+			
+			for (int i = 0; i < requestCount; i++) {
+				int randomNo = (int)(Math.random() * randomRange) + minWordId;
+				fetchedVerb = verbRepository.findFirstByVerbIdGreaterThanEqualAndVerbIdNotInOrderByVerbIdAsc(randomNo, excludedVerbIds);
+				randomVerbs.add(fetchedVerb);
+				excludedVerbIds.add(fetchedVerb.getVerbId());
+			}			
+		}
+		
+		return randomVerbs;
+	}
+
+	@Override
+	public List<FullConjugationDto> findAllConjugationsByVerbId(int verbId) {
+		return conjugationRepository.findFullConjugationDtosByVerbId(verbId);
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.home.spanishplatform.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.home.spanishplatform.POJO.ConjugationTrainingForm;
 import com.home.spanishplatform.entity.Conjugation;
@@ -63,7 +66,7 @@ public class ConjugationTrainingController {
 			languageIdTo = 1;
 		}
 
-		if(conjugationTrainingForm.getSearchLanguageId() == 1) {
+		if(languageIdFrom == 1) {
 			conjugationTrainingForm.setSpanishVerb(trainingVerb.getWordText());
 			conjugationTrainingForm.setSearchVerb(trainingVerb.getWordText());
 			spanishWordId = trainingVerb.getWordId();
@@ -94,16 +97,23 @@ public class ConjugationTrainingController {
 		int spanishVerbId = conjugationService.getVerbIdByWordId(spanishWordId);
 
 		//set correct state
-		if (conjugationTrainingForm.getSpanishVerb().isBlank() || conjugationTrainingForm.getSearchVerb().isBlank() || spanishVerbId == 0) {
-			searchStatus = "error";
-		} else {
-			searchStatus = "OK";
-		}
+//		if (conjugationTrainingForm.getSpanishVerb().isBlank() || conjugationTrainingForm.getSearchVerb().isBlank() || spanishVerbId == 0) {
+//			searchStatus = "error";
+//		} else {
+//			searchStatus = "OK";
+//		}
 		
 		//initialize the verb forms
 		Optional<Verb> verbBaseForms = conjugationService.findByVerbId(spanishVerbId);
+		//TODO: make conjugation optional
 		Conjugation verbSingleConjugation = conjugationService.findSingleConjugation(spanishVerbId, conjugationTrainingForm.getSearchModeId(), conjugationTrainingForm.getSearchTenseId());
 
+		if (verbBaseForms.isPresent() && verbSingleConjugation != null) {
+			searchStatus = "OK";
+		} else {
+			searchStatus = "error";
+		}
+		
 		//save data in the model
 		theModel.addAttribute("verbBaseForms", verbBaseForms);
 		theModel.addAttribute("verbSingleConjugation", verbSingleConjugation);
@@ -112,16 +122,28 @@ public class ConjugationTrainingController {
 		return "user/training/conjugation_training";
 	}
 	
+    @GetMapping("/tenseDropdownOptions")
+    @ResponseBody
+    public List<ConjugationTense> getTenseDropdownOptions(@RequestParam String modeDropdownValue) {
+        // Logic to determine the items of the second dropdown based on the first dropdown's value
+    	return  conjugationService.findAllConjugationTensesPerMode(Integer.parseInt(modeDropdownValue));
+//        List<ConjugationTense> tenseList =  conjugationService.findAllConjugationTensesPerMode(Integer.parseInt(modeDropdownValue));
+//        return tenseList.stream().map(ConjugationTense::getTenseText).collect(Collectors.toList());
+    }
+	
 	public void saveFormValuesAndStatusToModel(String status, ConjugationTrainingForm conjugationTrainingForm, Model theModel) {
 		//get all modes and tenses and languages
 		List<Language> languages = translationService.findAllLanguages();
-		List<ConjugationTense> conjugationTenses = conjugationService.findAllConjugationTenses();
+		List<ConjugationTense> conjugationTenses = new ArrayList<ConjugationTense>();
 		List<ConjugationMode> conjugationModes = conjugationService.findAllConjugationModes();
+		
+		if (conjugationTrainingForm.getSearchModeId() > 0) {
+			conjugationTenses = conjugationService.findAllConjugationTensesPerMode(conjugationTrainingForm.getSearchModeId());
+		}
 		
 		theModel.addAttribute("languages", languages);
 		theModel.addAttribute("conjugationModes", conjugationModes);
-		theModel.addAttribute("conjugationTenses", conjugationTenses);
-		
+		theModel.addAttribute("conjugationTenses", conjugationTenses);		
 		theModel.addAttribute("conjugationTrainingForm", conjugationTrainingForm);
 		theModel.addAttribute("searchStatus", status);
 	}

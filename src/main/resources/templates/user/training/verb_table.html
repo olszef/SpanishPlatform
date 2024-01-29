@@ -21,69 +21,63 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>Conjugate verb</h1>
+										<h1>Verb table</h1>
 									</header>
 									
 									<p>This tool lets you conjugate any Spanish verb. Write the verb in the search bar and hit the button. Below you will see the verb's conjugation forms in different Spanish modes and tenses.</p>
 									
 								<!-- Search -->
 									<section id="verb-conjugation-search" class="alt">
-										<form method="get" th:action="@{/tool/conjugation/find}">
-											<div class="row">
-												<div id="conjugation-search-pane" class="col-6 col-12-small">													
-													<input type="text" placeholder="Search" name="wordText" th:value="*{verbText}"/>													
-												</div>
-												<div><button type="submit">conjugate</button></div>
+										<div class="row gtr-200">
+											<div class="col-6 col-12-medium">
+												<form method="get" th:action="@{/training/verbtable/generate}">
+													<div class="row gtr-uniform">														
+														<div>
+															<button type="submit" name="find" value="find" id="conjugation-training-draw-btn">generate</button>
+														</div>																																											
+													</div>
+												</form>											
 											</div>
-										</form>
+											
+											<div class="col-6 col-12-medium"></div>
+										</div>
 									</section>
 									
 								<!-- Search Results-->
-									<div th:if="${searchStatus == 'empty'}">
-										<span>Conjugation not found...</span>											
+									<div th:if="${generateStatus == 'empty'}">
+										<span>Data not found...</span>											
 									</div>
 								</section>
 
+								<!-- here put table -->
 								<section th:if="${searchStatus == 'OK'}">
-									<div th:each="modeForms : ${allConjugationForms}">
-										<header class="major">
-											<h2 th:text="${modeForms.key}" />
-										</header>
+
 										<div class="posts">
-											<article th:each="tempConjugation : ${modeForms.value}">
-												<h3 th:text="${tempConjugation.tenseText}" />
+											<article th:each="tempConjugation : ${randomConjugations}">
 												<table class="table table-bordered table-striped">
 													<tbody>
 														<tr>				
 															<td>yo</td>
-															<td th:text="${tempConjugation.single1}" />					
-														</tr>
-														<tr>				
 															<td>tu</td>
-															<td th:text="${tempConjugation.single2}" />					
-														</tr>
-														<tr>				
 															<td>el</td>
-															<td th:text="${tempConjugation.single3}" />					
-														</tr>
-														<tr>				
 															<td>nosotros</td>
-															<td th:text="${tempConjugation.plural1}" />					
-														</tr>
-														<tr>				
 															<td>vosotros</td>
-															<td th:text="${tempConjugation.plural2}" />					
+															<td>ellos</td>			
 														</tr>
 														<tr>				
-															<td>ellos</td>
-															<td th:text="${tempConjugation.plural3}" />					
+															<td th:text="${tempConjugation.single1}" />	
+															<td th:text="${tempConjugation.single2}" />
+															<td th:text="${tempConjugation.single3}" />	
+															<td th:text="${tempConjugation.plural1}" />	
+															<td th:text="${tempConjugation.plural2}" />	
+															<td th:text="${tempConjugation.plural3}" />							
 														</tr>						
 													</tbody>		
 												</table>
 											</article>
 										</div>
-									</div>
-								</section>								
+
+								</section>									
 
 						</div>
 					</div>

@@ -2,31 +2,45 @@ package com.home.spanishplatform.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import com.home.spanishplatform.entity.keys.ConjugationTenseId;
+
 @Entity
+@IdClass(ConjugationTenseId.class)
 @Table(name="conjugation_tense")
 public class ConjugationTense {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="tense_id")
 	private int tenseId;
+	
+	@Id
+	@Column(name="mode_id")
+	private int modeId;	
 
 	@Column(name="tense_text")
 	private String tenseText;
 	
 	public ConjugationTense() {}
 
-	public ConjugationTense(int tenseId, String tenseText) {
+	public ConjugationTense(int modeId, int tenseId, String tenseText) {
 		super();
+		this.modeId = modeId;
 		this.tenseId = tenseId;
 		this.tenseText = tenseText;
 	}
 
+	public int getModeId() {
+		return modeId;
+	}
+
+	public void setModeId(int modeId) {
+		this.modeId = modeId;
+	}
+	
 	public int getTenseId() {
 		return tenseId;
 	}
@@ -45,7 +59,7 @@ public class ConjugationTense {
 
 	@Override
 	public String toString() {
-		return "ConjugationTense [tenseId=" + tenseId + ", tenseText=" + tenseText + "]";
+		return "ConjugationTense [modeId=" + modeId + ", tenseId=" + tenseId + ", tenseText=" + tenseText + "]";
 	}
 
 }

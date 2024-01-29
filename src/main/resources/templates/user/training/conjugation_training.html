@@ -43,7 +43,7 @@
 														</div>
 														
 														<div class="col-12">
-															<select th:field="*{searchLanguageId}" id="conjugate-training-language-start">
+															<select th:field="*{searchLanguageId}" id="conjugate-training-language-start" disabled>
 																<option th:each="language : ${languages}"
 																	th:value="${language.languageId}"
 																	th:text="${language.languageText}"
@@ -57,6 +57,7 @@
 														
 														<div class="col-6 col-12-small">
 															<select th:field="*{searchModeId}" id="conjugate-training-mode-start">
+																<option th:value="0" disabled selected hidden>Choose Mode</option>
 																<option th:each="mode : ${conjugationModes}"
 																	th:value="${mode.modeId}"
 																	th:text="${mode.modeText}"
@@ -65,11 +66,12 @@
 														</div>
 														
 														<div class="col-6 col-12-small">
-															<select th:field="*{searchTenseId}" id="conjugate-training-tense-start">
+															<select th:field="*{searchTenseId}" id="conjugate-training-tense-start" th:value="*{searchTenseId}" th:disabled="*{searchTenseId} == 0">
+																<option th:value="0" disabled selected hidden>Choose Tense</option>
 																<option th:each="tense : ${conjugationTenses}"
 																	th:value="${tense.tenseId}"
 																	th:text="${tense.tenseText}"
-																	></option>
+																	></option>																
 															</select>												
 														</div>
 														
@@ -98,7 +100,7 @@
 											<h2>Fill out the forms of the verb</h2>
 										</header>										
 										
-										<form id="conjugation-training-form">
+										<form id="conjugation-training-practice-inputs">
 											<div class="row" th:object="${conjugationTrainingForm}">
 												<h4>Verb:</h4>
 												<div>

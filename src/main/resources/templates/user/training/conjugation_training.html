@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
-		<link rel="stylesheet" th:href="@{/user/assets/css/conjugation_training.css}">
+		<link rel="stylesheet" th:href="@{/user/assets/css/conjugation.css}">
 	</head>
 	<body class="is-preload">
 
@@ -66,7 +66,7 @@
 														</div>
 														
 														<div class="col-6 col-12-small">
-															<select th:field="*{searchTenseId}" id="conjugate-training-tense-start" th:value="*{searchTenseId}" th:disabled="*{searchTenseId} == 0">
+															<select th:field="*{searchTenseId}" id="conjugate-training-tense-start" th:disabled="*{searchTenseId} == 0">
 																<option th:value="0" disabled selected hidden>Choose Tense</option>
 																<option th:each="tense : ${conjugationTenses}"
 																	th:value="${tense.tenseId}"

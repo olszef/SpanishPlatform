@@ -95,13 +95,6 @@ public class ConjugationTrainingController {
 		
 		//get word to verb mapping
 		int spanishVerbId = conjugationService.getVerbIdByWordId(spanishWordId);
-
-		//set correct state
-//		if (conjugationTrainingForm.getSpanishVerb().isBlank() || conjugationTrainingForm.getSearchVerb().isBlank() || spanishVerbId == 0) {
-//			searchStatus = "error";
-//		} else {
-//			searchStatus = "OK";
-//		}
 		
 		//initialize the verb forms
 		Optional<Verb> verbBaseForms = conjugationService.findByVerbId(spanishVerbId);
@@ -134,8 +127,8 @@ public class ConjugationTrainingController {
 	public void saveFormValuesAndStatusToModel(String status, ConjugationTrainingForm conjugationTrainingForm, Model theModel) {
 		//get all modes and tenses and languages
 		List<Language> languages = translationService.findAllLanguages();
-		List<ConjugationTense> conjugationTenses = new ArrayList<ConjugationTense>();
 		List<ConjugationMode> conjugationModes = conjugationService.findAllConjugationModes();
+		List<ConjugationTense> conjugationTenses = new ArrayList<ConjugationTense>();
 		
 		if (conjugationTrainingForm.getSearchModeId() > 0) {
 			conjugationTenses = conjugationService.findAllConjugationTensesPerMode(conjugationTrainingForm.getSearchModeId());

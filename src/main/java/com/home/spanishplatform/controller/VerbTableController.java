@@ -1,8 +1,8 @@
 package com.home.spanishplatform.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.home.spanishplatform.entity.Conjugation;
+import com.home.spanishplatform.entity.ConjugationMode;
+import com.home.spanishplatform.entity.ConjugationTense;
 import com.home.spanishplatform.entity.Verb;
 import com.home.spanishplatform.service.ConjugationService;
 
@@ -23,14 +25,6 @@ public class VerbTableController {
 	
 	@GetMapping("")
 	public String translationPage(Model theModel) {
-		//initialize the form
-//		VerbTableForm verbTableForm = new VerbTableForm();
-	// not needed:			
-//		List<ConjugationTense> conjugationTenses = conjugationService.findAllConjugationTenses();
-//		List<ConjugationMode> conjugationModes = conjugationService.findAllConjugationModes();		
-//		theModel.addAttribute("conjugationModes", conjugationModes);
-//		theModel.addAttribute("conjugationTenses", conjugationTenses);
-//		theModel.addAttribute("verbTableForm", verbTableForm);
 		theModel.addAttribute("generateStatus", "ready");
 		return "user/training/verb_table";
 	}
@@ -42,23 +36,67 @@ public class VerbTableController {
 		List<Verb> randomVerbs = conjugationService.findRandomSpanishVerbs(10);
 		
 		List<Conjugation> randomConjugations = new ArrayList<Conjugation>();
-		HashMap<Integer, String> modeMap = conjugationService.findAllConjugationModesAsMap();
-		HashMap<Integer, String> tenseMap = conjugationService.findAllConjugationTensesAsMap();
+		List<ConjugationMode> modeMap = conjugationService.findAllConjugationModes();
 		
-		for (Verb verb : randomVerbs) {
-			int randomMode = (int)(Math.random() * modeMap.size()) + 1;
-			int randomTense = (int)(Math.random() * tenseMap.size()) + 1;
-			randomConjugations.add(conjugationService.findSingleConjugation(verb.getVerbId(), randomMode, randomTense));
+		//TODO: uncomment, cause hardcode of 1 is for testing
+//		int randomMode = (int)(Math.random() * modeMap.size()) + 1;
+		int randomMode = 0;
+		int randomModeId = modeMap.get(randomMode).getModeId();
+		
+		
+		List<ConjugationTense> tenseMap = conjugationService.findAllConjugationTensesPerMode(randomModeId);
+		
+		for (Verb verb : randomVerbs) {			
+			//TODO: uncomment, cause hardcode of 1 is for testing
+//			int randomTense = (int)(Math.random() * tenseMap.size()) + 1;
+			int randomTense = 0;
+			int randomTenseId = tenseMap.get(randomTense).getModeId();
+			Conjugation conjugation = conjugationService.findSingleConjugation(verb.getVerbId(), randomModeId, randomTenseId);		
+			randomConjugations.add(removeRandomConjugationForms(conjugation));
 		}
 		
 		generateStatus = "OK";
 		
-//		theModel.addAttribute("allModesForms", allModesForms);
-		theModel.addAttribute("modeMap", modeMap);
+		theModel.addAttribute("modeName", modeMap.get(randomMode).getModeText());
 		theModel.addAttribute("tenseMap", tenseMap);
 		theModel.addAttribute("randomConjugations", randomConjugations);
 		theModel.addAttribute("searchStatus", generateStatus);
 		return "user/training/verb_table";
+	}
+	
+	private Conjugation removeRandomConjugationForms(Conjugation conjugation) {
+		Random random = new Random();
+		List<Integer> randomNums = new ArrayList<Integer>();
+		
+		for (int i = 0; i < 3; i++) {
+			int nextRandom;
+			do {
+				nextRandom = random.nextInt(6) + 1;
+			} while (randomNums.contains(nextRandom));
+			randomNums.add(nextRandom);
+			
+			switch (nextRandom) {
+				case 1:
+					conjugation.setSingle1("");
+					break;
+				case 2:
+					conjugation.setSingle2("");
+					break;
+				case 3:
+					conjugation.setSingle3("");
+					break;
+				case 4:
+					conjugation.setPlural1("");
+					break;
+				case 5:
+					conjugation.setPlural2("");
+					break;
+				case 6:
+					conjugation.setPlural3("");
+					break;
+			}
+		}		
+		return conjugation;
 	}
 
 }

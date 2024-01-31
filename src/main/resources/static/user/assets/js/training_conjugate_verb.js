@@ -29,7 +29,6 @@ $(document).ready(function() {
 	}
 	
 	$('#conjugate-training-mode-start').on('change', getTenseListDropdown);
-	//getTenseListDropdown();
 });
 
 function getTenseListDropdown() {
@@ -49,10 +48,6 @@ function getTenseListDropdown() {
 				document.getElementById("conjugate-training-tense-start").disabled = false;
 			}
 		});
-		
-		if (tenseLastValue > 0) {
-			$tenseDropdown.value = tenseLastValue;
-		}
 	}
 }
 

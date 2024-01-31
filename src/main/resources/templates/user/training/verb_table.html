@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/conjugation.css}">
 	</head>
 	<body class="is-preload">
 
@@ -24,7 +25,7 @@
 										<h1>Verb table</h1>
 									</header>
 									
-									<p>This tool lets you conjugate any Spanish verb. Write the verb in the search bar and hit the button. Below you will see the verb's conjugation forms in different Spanish modes and tenses.</p>
+									<p>This tool lets you generate a table of Spanish verbs. Each verb will have only half of the conjugation forms shown. Basing on them you have to guess what is the tense of the given verb. They will all be in the same mode, which will be given above the table.</p>
 									
 								<!-- Search -->
 									<section id="verb-conjugation-search" class="alt">
@@ -51,32 +52,41 @@
 
 								<!-- here put table -->
 								<section th:if="${searchStatus == 'OK'}">
+											<h4 th:text="*{modeName}"></h4>
+													<div class="table-wrapper">
+														<table class="alt">
+															<thead>
+																<tr>
+																	<th>yo</th>
+																	<th>tu</th>
+																	<th>el / ella</th>
+																	<th>nosotros</th>
+																	<th>vosotros</th>
+																	<th>ellos / ellas</th>	
+																</tr>
+															</thead>
+															<tbody>
+																<tr th:each="tempConjugation : ${randomConjugations}">
+																	<td th:text="${tempConjugation.single1}" />	
+																	<td th:text="${tempConjugation.single2}" />
+																	<td th:text="${tempConjugation.single3}" />	
+																	<td th:text="${tempConjugation.plural1}" />	
+																	<td th:text="${tempConjugation.plural2}" />	
+																	<td th:text="${tempConjugation.plural3}" />
+																	<td>																		
+																		<select th:field="*{tenseMap}" onchange="checkConjugationTense(this)">
+																			<option th:value="0" selected hidden>Choose Tense</option>
+																			<option th:each="tense : ${tenseMap}"
+																				th:value="${tense.tenseId}"
+																				th:text="${tense.tenseText}"
+																			></option>																
+																		</select>
+																		<input type="hidden" th:value="*{tempConjugation.tenseId}"/>
+																	</td>
 
-										<div class="posts">
-											<article th:each="tempConjugation : ${randomConjugations}">
-												<table class="table table-bordered table-striped">
-													<tbody>
-														<tr>				
-															<td>yo</td>
-															<td>tu</td>
-															<td>el</td>
-															<td>nosotros</td>
-															<td>vosotros</td>
-															<td>ellos</td>			
-														</tr>
-														<tr>				
-															<td th:text="${tempConjugation.single1}" />	
-															<td th:text="${tempConjugation.single2}" />
-															<td th:text="${tempConjugation.single3}" />	
-															<td th:text="${tempConjugation.plural1}" />	
-															<td th:text="${tempConjugation.plural2}" />	
-															<td th:text="${tempConjugation.plural3}" />							
-														</tr>						
-													</tbody>		
-												</table>
-											</article>
-										</div>
-
+																</tr>
+														</table>
+													</div>
 								</section>									
 
 						</div>
@@ -88,6 +98,7 @@
 
 		<!-- Scripts -->
 			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/user/assets/js/training_verb_table.js}"></script>
 
 	</body>
 </html>

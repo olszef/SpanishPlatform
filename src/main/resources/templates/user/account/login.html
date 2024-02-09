@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="user/fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Login</h1>
+									</header>
+									
+								   <form name='f' action="login" method='POST'>
+								      <table>
+								         <tr>
+								            <td>User:</td>
+								            <td><input type='text' name='username' value=''></td>
+								         </tr>
+								         <tr>
+								            <td>Password:</td>
+								            <td><input type='password' name='password' /></td>
+								         </tr>
+								         <tr>
+								            <td><input name="submit" type="submit" value="submit" /></td>
+								         </tr>
+								      </table>
+								  </form>							
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

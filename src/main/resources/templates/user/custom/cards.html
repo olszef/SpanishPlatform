@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="user/fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Conjugate verb</h1>
+									</header>
+									
+									<p>This tool lets you conjugate any Spanish verb. Write the verb in the search bar and hit the button. Below you will see the verb's conjugation forms in different Spanish modes and tenses.</p>
+									
+								<!-- Search -->
+									<section id="verb-conjugation-search" class="alt">
+										<p>CARDS</p>
+									</section>
+									
+								<!-- Search Results-->
+									<div th:if="${searchStatus == 'empty'}">
+										<span>Conjugation not found...</span>											
+									</div>
+								</section>
+
+								<section th:if="${searchStatus == 'OK'}">
+									
+								</section>								
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

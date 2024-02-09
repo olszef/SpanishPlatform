@@ -24,12 +24,25 @@
 
 	<div class="inner" th:fragment="sidebar_frag">
 
-		<!-- Search -->
-		<section id="search" class="alt">
-			<form method="post" action="#">
-				<input type="text" name="query" id="query" placeholder="Search" />
-			</form>
-		</section>
+		<!-- Account -->
+			<div sec:authorize="!isAuthenticated()">
+				<a href="/login" class="button primary fit">Login</a>
+			</div>
+			
+			<div sec:authorize="isAuthenticated()" class="row">
+				<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" id="logout-form"></form>
+				<ul class="icons">
+					<li><a th:href="@{/index}" class="icon solid fa-home"></a></li>
+					<li><a th:href="@{/}" class="icon solid fa-user-cog"></a></li>
+					<li><a th:href="@{/}" class="icon solid fa-user-edit"></a></li>
+					<li><a th:href="@{/}" class="icon solid fa-envelope"></a></li>
+					<li><a href="/logout" onclick="$('#logout-form').submit();" class="icon solid fa-sign-in-alt"></a></li>
+				</ul>
+				<ul class="alt">					
+					<li>Welcome back <b><span th:text="${#authentication.getPrincipal().getName()}"></span></b></li> 						
+					<li>Last login: <i><span th:text="${#authentication.getPrincipal().getUserLastLogin()}"></span></i></li>									
+				</ul>					
+			</div>
 
 		<!-- Menu -->
 		<nav id="menu">
@@ -59,7 +72,7 @@
 					</ul></li>
 				<li><span class="opener">Custom</span>
 					<ul>
-						<li><a href="#">Language cards</a></li>
+						<li><a th:href="@{/custom/cards}">Language cards</a></li>
 						<li><a href="#">My exam</a></li>
 					</ul></li>
 			</ul>

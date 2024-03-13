@@ -47,6 +47,7 @@ public class MySecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) -> authorize
                                 .antMatchers("/custom/**").authenticated()
+                                .antMatchers("/user/**").authenticated()
                                 .antMatchers("/admin/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form

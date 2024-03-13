@@ -75,3 +75,7 @@ td.td-filler-40 {
 	font-size: 2em;
 	display: inline-block;
 }
+
+.error-message {
+	color: #B22222;
+}

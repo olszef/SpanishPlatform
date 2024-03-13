@@ -26,7 +26,7 @@ public class VerbTableController {
 	@GetMapping("")
 	public String translationPage(Model theModel) {
 		theModel.addAttribute("generateStatus", "ready");
-		return "user/training/verb_table";
+		return "training/verb_table";
 	}
 
 	@GetMapping("/generate")
@@ -61,7 +61,7 @@ public class VerbTableController {
 		theModel.addAttribute("tenseMap", tenseMap);
 		theModel.addAttribute("randomConjugations", randomConjugations);
 		theModel.addAttribute("searchStatus", generateStatus);
-		return "user/training/verb_table";
+		return "training/verb_table";
 	}
 	
 	private Conjugation removeRandomConjugationForms(Conjugation conjugation) {

@@ -13,6 +13,6 @@ public class LanguageCardsController {
 	public String translationPage(Model theModel) {
 //		theModel.addAttribute("searchStatus", "ready");
 //		theModel.addAttribute("verbText", "");
-		return "user/custom/cards";
+		return "custom/cards";
 	}
 }

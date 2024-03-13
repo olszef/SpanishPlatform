@@ -11,10 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 import com.home.spanishplatform.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-	User findByUsername(String username);
+	User findByEmail(String email);
 	
 	@Modifying
     @Query("UPDATE User c SET c.lastLogin = :lastLogin WHERE c.userId = :userId")
 	@Transactional
     void updateLastLoginByUserId(@Param("userId") int userId, @Param("lastLogin") LocalDateTime lastLogin);
+	
+	@Modifying
+    @Query("UPDATE User c SET c.password = :newPassword WHERE c.userId = :userId")
+	@Transactional
+    void changeUserPassword(@Param("userId") int userId, @Param("newPassword") String newPassword);
+	
+	@Modifying
+    @Query("UPDATE User c SET c.name = :newName, c.username = :newUsername WHERE c.userId = :userId")
+	@Transactional
+    void changeUserPassword(@Param("userId") int userId, @Param("newName") String newName, @Param("newUsername") String newUsername);
 }

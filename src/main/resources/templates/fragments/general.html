@@ -33,9 +33,9 @@
 				<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" id="logout-form"></form>
 				<ul class="icons">
 					<li><a th:href="@{/index}" class="icon solid fa-home"></a></li>
-					<li><a th:href="@{/}" class="icon solid fa-user-cog"></a></li>
-					<li><a th:href="@{/}" class="icon solid fa-user-edit"></a></li>
-					<li><a th:href="@{/}" class="icon solid fa-envelope"></a></li>
+					<li><a th:href="@{/user/editdata}" class="icon solid fa-user-cog"></a></li>
+					<li><a th:href="@{/user/changepass}" class="icon solid fa-user-edit"></a></li>
+					<li><a th:href="@{/user/contactus}" class="icon solid fa-envelope"></a></li>
 					<li><a href="/logout" onclick="$('#logout-form').submit();" class="icon solid fa-sign-in-alt"></a></li>
 				</ul>
 				<ul class="alt">					
@@ -60,12 +60,12 @@
 					</ul></li>
 				<li><span class="opener">Tools</span>
 					<ul>
-						<li><a th:href="@{/translation}">Dictionary</a></li>
+						<li><a th:href="@{/tool/translation}">Dictionary</a></li>
 						<li><a th:href="@{/tool/conjugation}">Conjugation</a></li>
 					</ul></li>
 				<li><span class="opener">Training</span>
 					<ul>
-						<li><a th:href="@{/numbers}">Numbers</a></li>
+						<li><a th:href="@{/training/numbers}">Numbers</a></li>
 						<li><a th:href="@{/training/conjugation}">Conjugate verb</a></li>
 						<li><a th:href="@{/training/verbtable}">Verb table</a></li>
 						<li><a href="#">Topical vocabulary</a></li>
@@ -80,12 +80,12 @@
 	</div>
 	
 	<div th:fragment="scripts_frag">
-		<script th:src="@{/user/assets/js/jquery.min.js}"></script>
-		<script th:src="@{/user/assets/js/browser.min.js}"></script>
-		<script th:src="@{/user/assets/js/breakpoints.min.js}"></script>
-		<script th:src="@{/user/assets/js/util.js}"></script>
-		<script th:src="@{/user/assets/js/main.js}"></script>
-		<script th:src="@{/user/assets/js/custom.js}"></script>
+		<script th:src="@{/assets/js/jquery.min.js}"></script>
+		<script th:src="@{/assets/js/browser.min.js}"></script>
+		<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+		<script th:src="@{/assets/js/util.js}"></script>
+		<script th:src="@{/assets/js/main.js}"></script>
+		<script th:src="@{/assets/js/custom.js}"></script>
 	</div>
 </body>
 </html>

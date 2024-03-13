@@ -15,7 +15,7 @@ import com.home.spanishplatform.entity.Language;
 import com.home.spanishplatform.service.TranslationService;
 
 @Controller
-@RequestMapping("/translation")
+@RequestMapping("/tool/translation")
 public class TranslationController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class TranslationController {
 		theModel.addAttribute("searchStatus", "ready");
 		TranslationSearch translationSearch = new TranslationSearch();
 		theModel.addAttribute("translationSearch", translationSearch);
-		return "user/dictionary";
+		return "tool/dictionary";
 	}
 	
 	@GetMapping("/find")
@@ -48,7 +48,7 @@ public class TranslationController {
 		List<Language> languages = translationService.findAllLanguages();
 		theModel.addAttribute("languages", languages);
 		
-		return "user/dictionary";
+		return "tool/dictionary";
 	}
 
 }

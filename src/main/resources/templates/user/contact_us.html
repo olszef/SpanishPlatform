@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/contact_form.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header>
+										<h1>Send us a message</h1>
+									</header>
+									
+									<div class="row">
+
+										<div class="center-div">
+											<form name="contact-us-form" th:action="@{/user/contactus}" th:object="${contactUsForm}" method="POST">
+												<div class="row gtr-uniform">
+													<div class="col-12">
+														<input type="text" th:field="*{contactFullName}" id="contact-name" value="" placeholder="Full Name" required/>
+														<p th:if="${#fields.hasErrors('contactFullName')}" th:errors="*{contactFullName}" class="error-message">Name cannot be empty</p>
+													</div>
+													<!-- Break -->
+													<div class="col-12">
+														<input type="text" th:field="*{contactSubject}" id="contact-subject" value="" placeholder="Subject" required/>
+														<p th:if="${#fields.hasErrors('contactSubject')}" th:errors="*{contactSubject}" class="error-message">Message subject cannot be empty</p>
+													</div>
+													<!-- Break -->
+													<div class="col-4 col-12-small">
+														<input type="radio" id="contact-lang-en" name="contact-language" th:field="*{contactLanguage}" value="EN"> 
+														<label for="contact-lang-en">English</label>
+													</div>
+													<div class="col-4 col-12-small">
+														<input type="radio" id="contact-lang-es" name="contact-language" th:field="*{contactLanguage}" value="ES">
+														<label for="contact-lang-es">Spanish</label>
+													</div>
+													<div class="col-4 col-12-small">
+														<input type="radio" id="contact-lang-pl" name="contact-language" th:field="*{contactLanguage}" value="PL">
+														<label for="contact-lang-pl">Polish</label>
+													</div>
+													<div class="col-12" th:if="${#fields.hasErrors('contactLanguage')}">
+														<p th:errors="*{contactLanguage}" class="error-message">Language must be chosen</p>
+													</div>
+													
+													<!-- Break -->
+													<div class="col-6 col-12-small">
+														<input type="checkbox" id="contact-copy" th:field="*{contactEmailCopy}">
+														<label for="contact-copy">Email me a copy</label>
+													</div>
+													
+													<!-- Break -->
+													<div class="col-12">
+														<textarea th:field="*{contactMessageText}" id="contact-message" placeholder="Enter your message" rows="6" required></textarea>
+														<p th:if="${#fields.hasErrors('contactMessageText')}" th:errors="*{contactMessageText}" class="error-message">Message cannot be empty</p>
+													</div>
+													<!-- Break -->
+													<div class="col-12">
+														<ul class="actions">
+															<li><input type="submit" value="Send Message" class="primary" /></li>
+															<li><input type="reset" value="Reset" /></li>
+														</ul>
+													</div>
+												</div>
+											</form>
+										</div>
+
+								  	</div>							
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<!-- <script th:src="@{/assets/js/form_block_submit.js}"></script>-->
+
+	</body>
+</html>

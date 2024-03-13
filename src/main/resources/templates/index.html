@@ -4,7 +4,7 @@
 		<title>Editorial by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
 	</head>
 	<body class="is-preload">
 
@@ -16,7 +16,7 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<div th:insert="user/fragments/general.html :: header_frag"></div>
+								<div th:insert="fragments/general.html :: header_frag"></div>
 
 							<!-- Banner -->
 								<section id="banner">
@@ -32,7 +32,7 @@
 										</ul>
 									</div>
 									<span class="image object">
-										<img th:src="@{/user/images/pic10.jpg}" alt="" />
+										<img th:src="@{/images/pic10.jpg}" alt="" />
 									</span>
 								</section>
 
@@ -134,11 +134,11 @@
 					</div>
 
 				<!-- Sidebar -->
-					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
 			</div>
 
 		<!-- Scripts -->
-			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
 
 	</body>
 </html>

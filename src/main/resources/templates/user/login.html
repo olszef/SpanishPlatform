@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Login</h1>
+									</header>
+																	
+								   	<form name="account-login-form" th:action="@{/login}" method="POST">
+								      <table>
+								         <tr>
+								            <td>Email:</td>
+								            <td><input type="text" name="username" placeholder="Enter Email" maxlength="45" required></td>
+								         </tr>
+								         <tr>
+								            <td>Password:</td>
+								            <td><input type="password" name="password" placeholder="Enter Password" maxlength="15" required></td>
+								         </tr>
+								      </table>
+								      
+								      <input name="submit" type="submit" value="submit" />
+								  	</form>							
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/assets/js/form_block_submit.js}"></script>
+
+	</body>
+</html>

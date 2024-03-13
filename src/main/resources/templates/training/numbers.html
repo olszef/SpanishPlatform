@@ -4,7 +4,7 @@
 		<title>Editorial by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
 	</head>
 	<body class="is-preload">
 
@@ -16,7 +16,7 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<div th:insert="user/fragments/general.html :: header_frag"></div>
+								<div th:insert="fragments/general.html :: header_frag"></div>
 
 							<!-- Content -->
 								<section>
@@ -33,7 +33,7 @@
 									</ul>
 								<!-- Search -->
 									<section id="verb-conjugation-search" class="alt">
-										<form method="get" th:action="@{/numbers/getList}">
+										<form method="get" th:action="@{/training/numbers/getList}">
 											<div class="row gtr-uniform">
 												<div id="numbers-range-from">													
 													<input type="text" placeholder="min" name="rangeFrom" th:value="*{rangeFrom}"/>													
@@ -55,7 +55,7 @@
 									<header class="major">
 										<h2>Write the following numbers</h2>
 									</header>
-									<form method="get" th:action="@{/numbers/checkAnswers}" th:object="${trainingNumbersForm}">
+									<form method="get" th:action="@{/training/numbers/checkAnswers}" th:object="${trainingNumbersForm}">
 										<table class="table table-bordered table-striped">
 											<tbody>
 												<tr th:each="number, itemStat : *{trainingNumbers}">				
@@ -91,11 +91,11 @@
 					</div>
 
 				<!-- Sidebar -->
-					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
 			</div>
 
 		<!-- Scripts -->
-			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
 
 	</body>
 </html>

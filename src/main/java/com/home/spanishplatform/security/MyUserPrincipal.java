@@ -67,4 +67,12 @@ public class MyUserPrincipal implements UserDetails {
     public String getUserLastLogin() {
         return user.getLastLogin().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
+    
+    public String getUserEmail() {
+    	return user.getEmail();
+    }
+
+	public User getUser() {
+		return user;
+	}
 }

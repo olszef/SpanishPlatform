@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/contact_form.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header>
+										<h1 th:text="${userFormTitle}" />
+									</header>
+									
+									<div class="row">
+
+										<div class="center-div">
+											<form name="user-form-data" th:action="@{/user/editdata}" th:object="${userForm}" method="POST">
+												<div class="row gtr-uniform">																								
+													<div class="col-12">
+														<label for="user-form-name">Name</label>
+														<input type="text" th:field="*{userFormName}" id="user-form-name" value="*{userFormName}" />
+														<p th:if="${#fields.hasErrors('userFormName')}" th:errors="*{userFormName}" class="error-message">Name cannot be empty</p>
+													</div>
+													<!-- Break -->
+													<div class="col-12">
+														<label for="user-form-username">Username</label>
+														<input type="text" th:field="*{userFormUsername}" id="user-form-username" th:value="*{userFormUsername}" required/>
+														<p th:if="${#fields.hasErrors('userFormUsername')}" th:errors="*{userFormUsername}" class="error-message">Username cannot be empty</p>
+													</div>
+													<!-- Break -->														
+													<div class="col-12">
+														<label for="user-form-email">Email</label>
+														<input type="text" th:field="*{userFormEmail}" id="user-form-email" th:value="*{userFormEmail}" th:readonly="*{!isEmailChangeable}" required/>
+														<p th:if="${#fields.hasErrors('userFormEmail')}" th:errors="*{userFormEmail}" class="error-message">Email cannot be empty</p>
+													</div>													
+													<!-- Break -->
+													<div class="col-12">
+														<ul class="actions">
+															<li><input type="submit" value="Save Data" class="primary" /></li>
+															<li><input type="reset" value="Reset" th:if="${userFormIsEmpty}" /></li>
+														</ul>
+													</div>
+												</div>
+											</form>
+										</div>
+
+								  	</div>							
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<!-- <script th:src="@{/assets/js/form_block_submit.js}"></script>-->
+
+	</body>
+</html>

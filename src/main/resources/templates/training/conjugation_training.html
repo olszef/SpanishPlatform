@@ -4,8 +4,8 @@
 		<title>Editorial by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" th:href="@{/user/assets/css/user_main.css}" />
-		<link rel="stylesheet" th:href="@{/user/assets/css/conjugation.css}">
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/conjugation.css}">
 	</head>
 	<body class="is-preload">
 
@@ -17,7 +17,7 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<div th:insert="user/fragments/general.html :: header_frag"></div>
+								<div th:insert="fragments/general.html :: header_frag"></div>
 
 							<!-- Content -->
 								<section>
@@ -182,12 +182,12 @@
 					</div>
 
 				<!-- Sidebar -->
-					<div id="sidebar" th:insert="user/fragments/general.html :: sidebar_frag"></div>
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
 			</div>
 
 		<!-- Scripts -->
-			<div th:insert="user/fragments/general.html :: scripts_frag"></div>
-			<script th:src="@{/user/assets/js/training_conjugate_verb.js}"></script>
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/assets/js/training_conjugate_verb.js}"></script>
 
 	</body>
 </html>

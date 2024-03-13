@@ -28,7 +28,7 @@ public class ConjugationToolController {
 	public String translationPage(Model theModel) {
 		theModel.addAttribute("searchStatus", "ready");
 		theModel.addAttribute("verbText", "");
-		return "user/tool/conjugation_tool";
+		return "tool/conjugation_tool";
 	}
 
 	@GetMapping("/find")
@@ -47,7 +47,7 @@ public class ConjugationToolController {
 		theModel.addAttribute("allConjugationForms", allConjugationForms);
 		theModel.addAttribute("verbText", wordText);
 		theModel.addAttribute("searchStatus", searchStatus);
-		return "user/tool/conjugation_tool";
+		return "tool/conjugation_tool";
 	}
 
 }

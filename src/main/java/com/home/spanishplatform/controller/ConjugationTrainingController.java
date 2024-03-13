@@ -41,7 +41,7 @@ public class ConjugationTrainingController {
 		
 		saveFormValuesAndStatusToModel("ready", conjugationTrainingForm, theModel);
 
-		return "user/training/conjugation_training";
+		return "training/conjugation_training";
 	}
 	
 	@GetMapping("/init")
@@ -112,7 +112,7 @@ public class ConjugationTrainingController {
 		theModel.addAttribute("verbSingleConjugation", verbSingleConjugation);
 		saveFormValuesAndStatusToModel(searchStatus, conjugationTrainingForm, theModel);
 		
-		return "user/training/conjugation_training";
+		return "training/conjugation_training";
 	}
 	
     @GetMapping("/tenseDropdownOptions")

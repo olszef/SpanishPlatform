@@ -28,11 +28,11 @@
 									<div class="row">
 
 										<div class="center-div">
-											<form name="user-form-data" th:action="@{/user/editdata}" th:object="${userForm}" method="POST">
+												<form name="user-form-data" th:action="${userFormNewUser} ? @{/admin/adduser} : @{/user/editdata}" th:object="${userForm}" method="POST">
 												<div class="row gtr-uniform">																								
 													<div class="col-12">
 														<label for="user-form-name">Name</label>
-														<input type="text" th:field="*{userFormName}" id="user-form-name" value="*{userFormName}" />
+														<input type="text" th:field="*{userFormName}" id="user-form-name" value="*{userFormName}" required/>
 														<p th:if="${#fields.hasErrors('userFormName')}" th:errors="*{userFormName}" class="error-message">Name cannot be empty</p>
 													</div>
 													<!-- Break -->
@@ -46,12 +46,18 @@
 														<label for="user-form-email">Email</label>
 														<input type="text" th:field="*{userFormEmail}" id="user-form-email" th:value="*{userFormEmail}" th:readonly="*{!isEmailChangeable}" required/>
 														<p th:if="${#fields.hasErrors('userFormEmail')}" th:errors="*{userFormEmail}" class="error-message">Email cannot be empty</p>
-													</div>													
+													</div>												
 													<!-- Break -->
+													<div class="col-12" th:if="${userFormNewUser}">														
+														<input type="checkbox" id="user-form-isadmin" th:field="*{userFormIsAdmin}">
+														<label for="user-form-isadmin">Admin rights</label>															
+													</div>												
+													<!-- Break -->													
+													<p th:if="${userFormNewUser}">Initial password is set to: <code><b>Username</b> + '<b>123!</b>'</code></p>
 													<div class="col-12">
 														<ul class="actions">
 															<li><input type="submit" value="Save Data" class="primary" /></li>
-															<li><input type="reset" value="Reset" th:if="${userFormIsEmpty}" /></li>
+															<li><input type="reset" value="Reset" th:if="${userFormNewUser}" /></li>
 														</ul>
 													</div>
 												</div>

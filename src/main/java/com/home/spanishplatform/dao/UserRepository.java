@@ -2,6 +2,8 @@ package com.home.spanishplatform.dao;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +29,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("UPDATE User c SET c.name = :newName, c.username = :newUsername WHERE c.userId = :userId")
 	@Transactional
     void changeUserPassword(@Param("userId") int userId, @Param("newName") String newName, @Param("newUsername") String newUsername);
+	
+	Page<User> findAll(Pageable pageable);
 }

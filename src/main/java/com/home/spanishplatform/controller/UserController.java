@@ -23,6 +23,7 @@ import com.home.spanishplatform.POJO.UserForm;
 import com.home.spanishplatform.security.MyUserDetailsServiceImpl;
 import com.home.spanishplatform.security.MyUserPrincipal;
 import com.home.spanishplatform.service.EmailServiceImpl;
+import com.home.spanishplatform.service.UserService;
 import com.home.spanishplatform.validation.PasswordChangeValidator;
 
 @Controller
@@ -31,6 +32,9 @@ public class UserController {
 	
 	@Autowired
 	private MyUserDetailsServiceImpl userDetailsService;
+	
+	@Autowired
+	private UserService userService;
 	
     private PasswordChangeValidator passwordChangeValidator;
     
@@ -67,7 +71,7 @@ public class UserController {
 		}
 		
 		try {
-			userDetailsService.changeUserPassword(loadedUser.getUserId(), changePasswordForm.getNewPassword());
+			userService.changeUserPassword(loadedUser.getUserId(), changePasswordForm.getNewPassword());
 			theModel.addAttribute("returnTitle", "Password successfully updated!");
 		} catch (Exception e) {
 			theModel.addAttribute("returnTitle", "Technical error- Password could not be changed");
@@ -124,7 +128,7 @@ public class UserController {
 		}
 		
 		theModel.addAttribute("userFormTitle", "Edit your data");
-		theModel.addAttribute("userFormIsEmpty", false);
+		theModel.addAttribute("userFormNewUser", false);
 		userForm.setUserFormName(loadedUser.getName());
 		userForm.setUserFormUsername(loadedUser.getUsername());
 		userForm.setUserFormEmail(loadedUser.getUserEmail());
@@ -144,7 +148,7 @@ public class UserController {
 		}
 		
 		try {
-			userDetailsService.updateUserData(loadedUser, userForm.getUserFormName(), userForm.getUserFormUsername());
+			userService.updateUserData(loadedUser, userForm.getUserFormName(), userForm.getUserFormUsername());
 		} catch (Exception e) {
 			theModel.addAttribute("returnTitle", "Error - your data could not be updated");
 			return "user/return_message";

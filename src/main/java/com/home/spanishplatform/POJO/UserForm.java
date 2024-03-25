@@ -18,6 +18,8 @@ public class UserForm {
 	private String userFormEmail;
 	
 	private boolean isEmailChangeable = false;
+	
+	private Boolean userFormIsAdmin = false;
 
 	public String getUserFormName() {
 		return userFormName;
@@ -65,5 +67,13 @@ public class UserForm {
 
 	public void setEmailChangeable(boolean isEmailChangeable) {
 		this.isEmailChangeable = isEmailChangeable;
+	}
+
+	public Boolean getUserFormIsAdmin() {
+		return userFormIsAdmin;
+	}
+
+	public void setUserFormIsAdmin(Boolean userFormIsAdmin) {
+		this.userFormIsAdmin = userFormIsAdmin;
 	}
 }

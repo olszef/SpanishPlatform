@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/custom.css}">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>User list</h1>
+									</header>
+									
+									<p>Below you can find the list of users that have access to the platform. On the right you have an option to remove the user.</p>
+									
+
+								<section>
+													<div class="table-wrapper">
+														<table class="alt">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Username</th>
+																	<th>Email</th>
+																	<th>Last login</th>
+																	<th>Admin rights?</th>
+																	<th>Remove user</th>	
+																</tr>
+															</thead>
+															<tbody>
+																<tr th:each="tempUser : ${userList}">
+																	<td th:text="${tempUser.name}" />	
+																	<td th:text="${tempUser.username}" />
+																	<td th:text="${tempUser.email}" />	
+																	<td th:text="${tempUser.lastLogin}" />		
+																	<td th:text="${tempUser.isAdmin} ? 'Yes' : 'No'" class="td-filler-20 center-object"/>
+																	<td class="td-filler-20 center-object">
+																		<form name="removeUserForm" th:object="${tempUser}" th:action="@{/admin/removeuser}" method="post" th:hidden="true" th:id="'remove-user-form' + ${tempUser.userId}">
+																			<input type="hidden" name="userId" th:value="*{userId}" />
+																		</form>
+																		<a href="/admin/removeuser" th:onclick="'document.getElementById(\'remove-user-form' + ${tempUser.userId} + '\').submit(); return false;'" class="icon solid fa-user-minus" th:if="${tempUser.email != #authentication.getPrincipal().getUserEmail()}"></a>												
+																	</td>
+																</tr>
+														</table>
+													</div>
+									
+									<!-- Pagination -->
+													<ul class="pagination" th:if="${userList.totalPages > 1}">
+														<li>
+															<a th:href="@{/admin/userlist(page=${userList.number - 1}, size=${userList.size})}" class="button" th:classappend="${userList.first} ? 'disabled' : ''">Prev</a>
+														</li>
+														
+														<!-- Always display the first page link -->
+												        <li>
+												            <a th:href="@{/admin/userlist(page=0, size=${userList.size})}" class="page" th:classappend="${userList.number == 0 ? 'active' : ''}">1</a>
+												        </li>
+												        
+												        <!-- Ellipses for pages before current - 2 -->
+												        <li th:if="${userList.number > 3}"><span>&hellip;</span></li>
+												        
+												        <!-- Display two pages before the current page if they exist -->
+												        <li th:each="pageNum : ${#numbers.sequence(userList.number - 2, userList.number - 1)}" th:if="${pageNum > 0}">
+												            <a th:href="@{/admin/userlist(page=${pageNum}, size=${userList.size})}" th:text="${pageNum + 1}" class="page" th:classappend="${pageNum == userList.number} ? 'active' : ''">Page number</a>
+												        </li>
+												        
+												        <!-- Display the current page (if not first or last) -->
+												        <li th:if="${!userList.first && !userList.last}">
+												            <a th:href="@{/admin/userlist(page=${userList.number}, size=${userList.size})}" th:text="${userList.number + 1}" class="page active">Current Page</a>
+												        </li>
+												        
+												        <!-- Display two pages after the current page if they exist -->
+												        <li th:each="pageNum : ${#numbers.sequence(userList.number + 1, userList.number + 2)}" th:if="${pageNum < userList.totalPages - 1}">
+												            <a th:href="@{/admin/userlist(page=${pageNum}, size=${userList.size})}" th:text="${pageNum + 1}" class="page" th:classappend="${pageNum == userList.number} ? 'active' : ''">Page number</a>
+												        </li>
+												        
+												        <!-- Ellipses for pages after current + 2 -->
+												        <li th:if="${userList.number + 2 < userList.totalPages - 2}"><span>&hellip;</span></li>
+												        
+												        <!-- Always display the last page link -->
+												        <li>
+												            <a th:href="@{/admin/userlist(page=${userList.totalPages - 1}, size=${userList.size})}" th:text="${userList.totalPages}" class="page" th:classappend="${userList.number == userList.totalPages - 1 ? 'active' : ''}">Last Page</a>
+												        </li>
+												        
+														<li>
+															<a th:href="@{/admin/userlist(page=${userList.number + 1}, size=${userList.size})}" class="button" th:classappend="${userList.last} ? 'disabled' : ''">Next</a>
+														</li>
+													</ul>									
+								</section>									
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/assets/js/training_verb_table.js}"></script>
+
+	</body>
+</html>

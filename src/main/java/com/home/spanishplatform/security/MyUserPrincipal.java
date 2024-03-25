@@ -2,12 +2,14 @@ package com.home.spanishplatform.security;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.home.spanishplatform.entity.Role;
 import com.home.spanishplatform.entity.User;
 
 public class MyUserPrincipal implements UserDetails {
@@ -75,4 +77,8 @@ public class MyUserPrincipal implements UserDetails {
 	public User getUser() {
 		return user;
 	}
+	
+	public List<Role> getRoles() {
+		return user.getRoles();
+	} 
 }

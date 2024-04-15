@@ -1,18 +1,18 @@
 $(document).ready(function() {
-	$('form input[type="submit"]').attr('disabled', 'disabled');
+	$('form input[type="submit"].primary').attr('disabled', 'disabled');
 	$('form input').on("keyup change", function() {
 
         var empty = false;
-        $('form input').each(function() {
+        $('form input[required]').each(function() {
             if ($(this).val() == '') {
                 empty = true;
             }
         });
 
         if (empty) {
-            $('form input[type="submit"]').attr('disabled', 'disabled');
+            $('form input[type="submit"].primary').attr('disabled', 'disabled');
         } else {
-            $('form input[type="submit"]').removeAttr('disabled');
+            $('form input[type="submit"].primary').removeAttr('disabled');
         }
     });
 });

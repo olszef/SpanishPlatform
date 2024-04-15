@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Language cards</h1>
+									</header>
+									
+									<p>This page lets you save the words that you want and sort them in groups. You can then learn them in a convenient way and later on train you knowledge!</p>
+									
+									<div class="posts">
+										<article>
+											<h3>Manage cards</h3>
+											<p>Create groups and add new words to them. If needed, change or remove them.</p>
+											<ul class="actions">
+												<li><a th:href="@{/custom/cards/manage}" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<h3>Learn</h3>
+											<p>View saved words as language cards. Learn by remembering them one by one.</p>
+											<ul class="actions">
+												<li><a th:href="@{/admin/cards/learn}" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<h3>Train</h3>
+											<p>Get a list of your words and translate them. You can check your answers live.</p>
+											<ul class="actions">
+												<li><a th:href="@{/admin/cards/train}" class="button">More</a></li>
+											</ul>
+										</article>
+									</div>
+								</section>								
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

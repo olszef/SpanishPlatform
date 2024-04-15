@@ -77,7 +77,7 @@ public class UserController {
 			theModel.addAttribute("returnTitle", "Technical error- Password could not be changed");
 		}
 		
-		return "user/return_message";		
+		return "shared/return_message";		
 	}
 	
 	@GetMapping("/contactus")
@@ -117,7 +117,7 @@ public class UserController {
 			theModel.addAttribute("returnTitle", "Error - email could not be sent");
 		}
 				
-		return "user/return_message";
+		return "shared/return_message";
 	}
 	
 	@GetMapping("/editdata")
@@ -151,7 +151,7 @@ public class UserController {
 			userService.updateUserData(loadedUser, userForm.getUserFormName(), userForm.getUserFormUsername());
 		} catch (Exception e) {
 			theModel.addAttribute("returnTitle", "Error - your data could not be updated");
-			return "user/return_message";
+			return "shared/return_message";
 		}
 		
 		MyUserPrincipal changedUser = (MyUserPrincipal)userDetailsService.loadUserByUsername(loadedUser.getUserEmail());
@@ -159,7 +159,7 @@ public class UserController {
 		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		
 		theModel.addAttribute("returnTitle", "Your was data updated successfully!");
-		return "user/return_message";
+		return "shared/return_message";
 	}
 	
 	private MyUserPrincipal getAuthenticatedUser() {

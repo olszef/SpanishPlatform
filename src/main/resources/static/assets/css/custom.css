@@ -79,3 +79,11 @@ td.td-filler-40 {
 .error-message {
 	color: #B22222;
 }
+
+tr.center-object td {
+	vertical-align: middle;
+}
+
+tr.center-object td div.row {
+	margin-left: 0;
+}

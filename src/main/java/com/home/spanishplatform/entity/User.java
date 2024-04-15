@@ -45,6 +45,15 @@ public class User {
             inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")})
     private List<Role> roles = new ArrayList<>();
     
+	public User() {
+		super();
+	}
+
+	public User(Integer userId) {
+		super();
+		this.userId = userId;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

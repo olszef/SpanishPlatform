@@ -43,16 +43,15 @@ public class AdminController {
 			return "user/user_form";
 		}
 
-		boolean isUserCreated = userService.createNewUser(userForm.getUserFormName(), userForm.getUserFormUsername(), userForm.getUserFormEmail(), userForm.getUserFormIsAdmin());
-		
-		if (isUserCreated) {
+		try {
+			userService.createNewUser(userForm.getUserFormName(), userForm.getUserFormUsername(), userForm.getUserFormEmail(), userForm.getUserFormIsAdmin());
 			theModel.addAttribute("returnTitle", "New user created!");
-		} else {
+		} catch (Exception e) {
 			theModel.addAttribute("returnTitle", "Error while creating new user");
 			theModel.addAttribute("returnMessage", "Please try again");
 		}
 				
-		return "user/return_message";
+		return "shared/return_message";
 	}
 	
 	@GetMapping("/userlist")
@@ -82,7 +81,7 @@ public class AdminController {
 			theModel.addAttribute("returnTitle", "You are not authorized for that operation!");
 		}
         
-		return "user/return_message";
+		return "shared/return_message";
 	}
 	
 	private boolean checkIfRemovalAuthorized(Authentication authentication, int userIdToRemove) {

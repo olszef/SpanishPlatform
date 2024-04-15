@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/contact_form.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header>
+										<h1>Add new language card</h1>
+									</header>
+									
+									<div class="row">
+
+										<div class="center-div">
+											<!-- Form to select group -->
+											<form id="groupSelectionForm" th:action="@{/custom/cards/manage/show}" method="get">
+												<label for="card-groupSelect">Choose Group</label>
+												<select id="card-groupSelect" name="groupId" onchange="toggleInputs()">
+												     <option value="" disabled selected>Select a Group</option>
+												     <option th:each="group : ${cardsGroups}" th:value="${group.groupId}" th:text="${group.groupName}" th:selected="${groupId != null && groupId == group.groupId}">Group Name</option>
+												     <option value="newGroup" th:selected="${groupId == null && languageCard.cardsGroup != null && languageCard.cardsGroup.groupName != null && languageCard.cardsGroup.groupName != ''}">Add New Group</option>
+												</select>											    
+											</form>
+											
+											<!-- Form to create new card -->	
+											<form name="language-card-new" th:action="@{/custom/cards/manage/changegroup}" th:object="${languageCard}" method="POST">
+												<div class="row gtr-uniform">																								
+												    <div id="newGroupSection" class="col-12" style="display:none;">
+												    	<label for="card-newGroupName">New Group Name</label>
+												        <input type="text" id="card-newGroupName" name="newGroupName" th:value="*{cardsGroup == null || cardsGroup.groupName == null ? '' : cardsGroup.groupName}" />
+												    </div>													
+													
+													<input th:if="${groupId}" type="hidden" name="cardsGroup.groupId" th:value="${groupId}" id="cardsGroup-group-id" required/>
+													
+													<!-- Break -->
+													<div class="col-12" id="wordInputSpanish" style="display:none;">
+														<label for="card-spanish-word">Spanish</label>
+														<input type="text" th:field="*{spanishWord}" id="card-spanish-word" />
+														<p th:if="${#fields.hasErrors('spanishWord')}" th:errors="*{spanishWord}" class="error-message">Field cannot be empty</p>
+													</div>
+													
+													<!-- Break -->														
+													<div class="col-12" id="wordInputTranslation" style="display:none;">
+														<label for="card-translation">Translation</label>
+														<input type="text" th:field="*{translation}" id="card-translation" />
+														<p th:if="${#fields.hasErrors('translation')}" th:errors="*{translation}" class="error-message">Field cannot be empty</p>
+													</div>																								
+
+													<div class="col-12" id="groupFrom-buttons" style="display:none;">
+														<ul class="actions">
+															<li><input type="submit" name="action" value="add card" class="primary" /></li>
+															<li><input type="submit" name="action" value="remove group" th:if="${groupId}" id="group-remove-button" onclick="submitFormWithoutValidation(this)" /></li>
+														</ul>
+													</div>
+												</div>
+											</form>
+										</div>										
+								  	</div>
+								  	
+								  	<div class="row" id="existing-cards-table" style="display:none;">
+										<div class="table-wrapper center-div" th:if="${existingLanguageCards != null && !existingLanguageCards.isEmpty()}">											
+											<table>
+												<thead>
+													<tr>
+														<th>No.</th>
+														<th>Spanish</th>
+														<th>Translation</th>
+														<th>Update / Remove</th>	
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="card, iStat : ${existingLanguageCards}" class="center-object">
+												       <form th:id="'cardform' + ${iStat.index}" th:action="@{/custom/cards/manage/changecard}" th:object="${modifiedLanguageCard}" method="post">
+										                    <td th:text="${iStat.index + 1}" />
+										                    <td>
+										                        <input type="text" name="spanishWord" th:value="${card.spanishWord}" />
+										                    </td>
+										                    <td>
+										                        <input type="text" name="translation" th:value="${card.translation}" />
+										                    </td>
+										                    <td>
+																<div class="row gtr-uniform">
+																	<input type="hidden" name="cardId" th:value="${card.cardId}" />
+																	<input type="hidden" name="cardsGroup.groupId" th:value="${card.cardsGroup.groupId}" />
+																	<input type="hidden" name="action" th:id="${'cardform' + iStat.index + '-action'}"/>
+																	<div class="col-4 col-6-small"><a href="/custom/cards/manage/changecard" th:onclick="'submitChangeForm(\'edit\', \'' + ${iStat.index} + '\'); return false;'" class="icon solid fa-edit"></a></div>
+																	<div class="col-4 col-6-small"><a href="/custom/cards/manage/changecard" th:onclick="'submitChangeForm(\'remove\', \'' + ${iStat.index} + '\'); return false;'" class="icon solid fa-folder-minus"></a></div>																															
+																</div> 						                	
+										                    </td>
+										                    <div th:if="${errorsCardId != null && errorsCardId == card.cardId}" class="error-message">
+										                    	<h4 th:text="'Card No.' + ${iStat.index + 1} + ':'" class="error-message">Card number</h4>
+										                    	<ul>
+																	<li th:if="${#fields.hasErrors('spanishWord')}" th:errors="*{spanishWord}">Field cannot be empty</li>
+																	<li th:if="${#fields.hasErrors('translation')}" th:errors="*{translation}">Field cannot be empty</li>
+																</ul>											                   
+												       		</div>
+												       </form>	
+													</tr>
+											</table>											
+										</div>								  	
+								  	</div>							
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/assets/js/form_block_submit.js}"></script>
+			<script th:src="@{/assets/js/custom_manage_card.js}"></script>
+
+	</body>
+</html>

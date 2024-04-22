@@ -55,14 +55,14 @@ function checkConjugation() {
 	var answer = this.nextElementSibling;
 	
 	if (this.value == answer.value) {
-		this.classList.add("correct-conjugation");
-		this.classList.remove("wrong-conjugation");
+		this.classList.add("correct-value");
+		this.classList.remove("wrong-value");
 	} else {
-		this.classList.remove("correct-conjugation");
+		this.classList.remove("correct-value");
 		if (this.value == '') {
-			this.classList.remove("wrong-conjugation");
+			this.classList.remove("wrong-value");
 		} else {
-			this.classList.add("wrong-conjugation");
+			this.classList.add("wrong-value");
 		}
 	}
 
@@ -80,7 +80,7 @@ function checkAllFields() {
 		for (i = 0; i < trainingInputs.length; i++) {
 		  if (trainingInputs[i].type == "text") {
 			checkedInputs++;
-			if (trainingInputs[i].classList.contains("correct-conjugation")) {
+			if (trainingInputs[i].classList.contains("correct-value")) {
 				correctInputs++;
 			}
 		  }		

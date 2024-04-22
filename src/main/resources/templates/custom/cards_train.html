@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/contact_form.css}" />
+		<link rel="stylesheet" th:href="@{/assets/css/check_value.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header>
+										<h1>Train vocabulary</h1>
+									</header>
+									
+									<div class="row">
+
+										<div class="center-div">
+											<!-- Form to select group -->
+											<form id="groupSelectionForm" th:action="@{/custom/cards/train/show}" method="get">
+												<div class="row gtr-uniform">												
+													<div class="col-12">
+														<select id="card-groupSelect" name="groupId" required>
+														     <option value="" disabled selected>Select a Group</option>
+														     <option th:each="group : ${cardsGroups}" th:value="${group.groupId}" th:text="${group.groupName}" th:selected="${groupId != null && groupId == group.groupId}">Group Name</option>
+														</select>
+													</div>
+												
+													<div class="col-4 col-12-small">
+														<input type="radio" id="cards-training-spanish" name="cardsTrainingOption" value="spanish" th:checked="${cardsTrainingOption} == spanish">
+														<label for="cards-training-spanish">Spanish</label>
+													</div>
+													
+													<div class="col-4 col-12-small">
+														<input type="radio" id="cards-training-translation" name="cardsTrainingOption" value="translation" th:checked="${cardsTrainingOption} == translation">
+														<label for="cards-training-translation">Translation</label>
+													</div>
+													
+													<div class="col-12">
+														<button type="submit" name="find" value="find" id="cards-train-btn">get list</button>
+													</div>													
+												</div>																							    
+											</form>
+											
+										</div>										
+								  	</div>
+								  	
+								  	<div class="row" id="existing-cards-table" th:if="${existingLanguageCards != null && !existingLanguageCards.isEmpty()}">
+										<div class="table-wrapper center-div">											
+											<table>
+												<thead>
+													<tr>
+														<th>No.</th>
+														<th th:text="${cardsTrainingOption == 'spanish' ? 'Spanish' :'Translation'}">col1-text</th>
+														<th th:text="${cardsTrainingOption == 'spanish' ? 'Translation' :'Spanish'}">col2-text</th>	
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="card, iStat : ${existingLanguageCards}" class="center-object">
+										                    <td th:text="${iStat.index + 1}" />
+										                    <td>
+										                        <span type="text" th:name="${cardsTraininOption == 'spanish' ? 'spanishWord' :'translation'}" th:text="${cardsTrainingOption == 'spanish' ? card.spanishWord : card.translation}" />
+										                    </td>
+										                    <td>
+										                        <input type="text" placeholder="Write correct word" onchange="checkIfCorrectValue(this)"/>
+										                        <input type="hidden" th:name="${cardsTraininOption == 'spanish' ? 'translation' :'spanishWord'}" th:value="${cardsTrainingOption == 'spanish' ? card.translation : card.spanishWord}" />
+										                    </td>	
+													</tr>
+											</table>											
+										</div>								  	
+								  	</div>							
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/assets/js/cards_train.js}"></script>
+			<script th:src="@{/assets/js/check_value.js}"></script>
+	</body>
+</html>

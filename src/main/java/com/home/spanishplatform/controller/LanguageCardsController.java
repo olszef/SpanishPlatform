@@ -32,13 +32,13 @@ public class LanguageCardsController {
 	}
 
     @GetMapping("/manage")
-    public String showPrimaryDropdown(LanguageCard languageCard, Model model) {
+    public String showPrimaryManageForm(LanguageCard languageCard, Model model) {
     	model.addAttribute("cardsGroups", languageCardService.findAllGroups(getLoggedUserId()));
         return "custom/cards_manage";
     }
 	
     @GetMapping("/manage/show")
-    public String showCards(@ModelAttribute("groupId") Integer groupId, Model model) {
+    public String showManageCards(@ModelAttribute("groupId") Integer groupId, Model model) {
     	model.addAttribute("cardsGroups", languageCardService.findAllGroups(getLoggedUserId()));
         model.addAttribute("existingLanguageCards", languageCardService.findLanguageCardsByGroupId(groupId));
         
@@ -108,6 +108,22 @@ public class LanguageCardsController {
 		redirectAttributes.addFlashAttribute("groupId", modifiedLanguageCard.getCardsGroup().getGroupId());
 		return "redirect:/custom/cards/manage/show";
     }
+    
+    @GetMapping("/train")
+    public String showPrimaryTrainForm(LanguageCard languageCard, Model model) {
+    	model.addAttribute("cardsGroups", languageCardService.findAllGroups(getLoggedUserId()));
+    	model.addAttribute("cardsTrainingOption", "spanish");
+        return "custom/cards_train";
+    }
+    
+    @GetMapping("/train/show")
+    public String showTrainCards(@ModelAttribute("groupId") Integer groupId, @ModelAttribute("cardsTrainingOption") String cardsTrainingOption, Model model) {
+    	model.addAttribute("cardsGroups", languageCardService.findAllGroups(getLoggedUserId()));
+    	model.addAttribute("cardsTrainingOption", cardsTrainingOption);
+        model.addAttribute("existingLanguageCards", languageCardService.findLanguageCardsByGroupId(groupId));
+        
+        return "custom/cards_train";
+    }    
     
 	private int getLoggedUserId() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

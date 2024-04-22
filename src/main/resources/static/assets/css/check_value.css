@@ -1,7 +1,7 @@
-  .correct-conjugation {
+  .correct-value {
     border-color: #7FFF00;
     box-shadow: 0 0 0 2px #7FFF00; }
 
-  .wrong-conjugation {
+  .wrong-value {
     border-color: #DC143C;
     box-shadow: 0 0 0 2px #DC143C; }

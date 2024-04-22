@@ -1,4 +1,4 @@
-function checkConjugationTense(element) {
+function checkIfCorrectValue(element) {
 	var answer = element.nextElementSibling;
 	
 	if (element.value == answer.value) {
@@ -12,5 +12,4 @@ function checkConjugationTense(element) {
 			element.classList.add("wrong-value");
 		}
 	}
-	element.blur();
 }

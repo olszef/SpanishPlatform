@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>								
+
+							<!-- Content -->
+								<section th:if="${existingLanguageCards == null}">
+									<header>
+										<h1>Learn vocabulary</h1>
+									</header>									
+									<p>Here you can learn from you cards. You can go through your cards and memorize the words. If you want to check the translation, just click on the card to flip. Have fun!</p>
+									
+									<div class="row">
+
+										<div class="center-div">
+											<!-- Form to select group -->
+											<form id="groupSelectionForm" th:action="@{/custom/cards/learn/show}" method="get">
+												<div class="row gtr-uniform">												
+													<div class="col-12">
+														<select id="card-groupSelect" name="groupId" onchange="submitFormOnElementChange(this)">
+														     <option value="" disabled selected>Select a Group</option>
+														     <option th:each="group : ${cardsGroups}" th:value="${group.groupId}" th:text="${group.groupName}" th:selected="${groupId != null && groupId == group.groupId}">Group Name</option>
+														</select>
+													</div>												
+												</div>																							    
+											</form>
+											
+										</div>										
+								  	</div>
+								 </section>
+								 <section th:if="${existingLanguageCards != null && !existingLanguageCards.isEmpty()}">
+									<div class="posts">
+										<article>
+											<div class="icon-center-left removed-element" id="cards-left-arrow">
+												<ul class="icons">
+													<li><a class="icon solid fa-arrow-left" onclick="showNextCard('left'); return false;"></a></li>
+												</ul>
+											</div>
+										</article>
+										<article>
+									  		<div id="cards-container" class="center-object">
+									  			<div th:id="${'card' + iStat.index}" class="box card-box-params" th:each="card, iStat : ${existingLanguageCards}" th:classappend="${iStat.index > 0 ? 'removed-element' : ''}" onclick="toggleHidden(this)">
+													<ul class="icons">
+														<li class="icon li-icon removed-element"><img src="/images/worldwide.png" class="img-icon-size" /></li>
+														<li class="icon li-icon"><img src="/images/spain-flag.png" class="img-icon-size" /></li>
+													</ul>									  				
+									  				<p th:name="${'card' + iStat.index + 1 + 'Spanish'}" th:text="${card.spanishWord}" />
+									  				<p th:name="${'card' + iStat.index + 1 + 'Translation'}" th:text="${card.translation}" class="removed-element" />
+													<ul class="icons">
+														<li class="card-box-subscript">FLIP CARD</li>
+													</ul>									  				
+							  					</div>
+					  						</div>
+					  						
+					  						<div>
+												<a href="/custom/cards/learn" class="button primary fit">Back to groups</a>
+											</div>											
+										</article>
+										<article>
+											<div class="icon-center-right" id="cards-right-arrow" th:classappend="${existingLanguageCards.size() == 1 ? 'removed-element' : ''}">
+												<ul class="icons">
+													<li><a class="icon solid fa-arrow-right" onclick="showNextCard('right'); return false;"></a></li>
+												</ul>
+											</div>
+										</article>
+									</div>								  	
+								  								
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+			<script th:src="@{/assets/js/cards_learn.js}"></script>
+	</body>
+</html>

@@ -123,7 +123,22 @@ public class LanguageCardsController {
         model.addAttribute("existingLanguageCards", languageCardService.findLanguageCardsByGroupId(groupId));
         
         return "custom/cards_train";
-    }    
+    }
+    
+    @GetMapping("/learn")
+    public String showPrimaryLearnForm(LanguageCard languageCard, Model model) {
+    	model.addAttribute("cardsGroups", languageCardService.findAllGroups(getLoggedUserId()));
+    	
+        return "custom/cards_learn";
+    }
+    
+    @GetMapping("/learn/show")
+    public String showLearnCards(@ModelAttribute("groupId") Integer groupId, Model model) {
+    	model.addAttribute("cardsGroups", languageCardService.findAllGroups(getLoggedUserId()));
+        model.addAttribute("existingLanguageCards", languageCardService.findLanguageCardsByGroupId(groupId));
+        
+        return "custom/cards_learn";
+    }
     
 	private int getLoggedUserId() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -68,12 +68,10 @@
 						<li><a th:href="@{/training/numbers}">Numbers</a></li>
 						<li><a th:href="@{/training/conjugation}">Conjugate verb</a></li>
 						<li><a th:href="@{/training/verbtable}">Verb table</a></li>
-						<li><a href="#">Topical vocabulary</a></li>
 					</ul></li>
-				<li><span class="opener">Custom</span>
+				<li sec:authorize="isAuthenticated()"><span class="opener">Custom</span>
 					<ul>
 						<li><a th:href="@{/custom/cards}">Language cards</a></li>
-						<li><a href="#">My exam</a></li>
 					</ul></li>
 					
 				<li sec:authorize="hasRole('ADMIN')"><span class="opener">Admin</span>

@@ -51,30 +51,30 @@
 			</header>
 			<ul>
 				<li><a th:href="@{/}">Start</a></li>
-				<li><span class="opener">Learning</span>
+				<li><span class="opener" id="menu-learning">Learning</span>
 					<ul>
 						<li><a href="#">Articles and nouns</a></li>
 						<li><a href="#">Verbs</a></li>
 						<li><a href="#">Numbers</a></li>
 						<li><a href="#">Time</a></li>
 					</ul></li>
-				<li><span class="opener">Tools</span>
+				<li><span class="opener" id="menu-tools">Tools</span>
 					<ul>
 						<li><a th:href="@{/tool/translation}">Dictionary</a></li>
 						<li><a th:href="@{/tool/conjugation}">Conjugation</a></li>
 					</ul></li>
-				<li><span class="opener">Training</span>
+				<li><span class="opener" id="menu-training">Training</span>
 					<ul>
-						<li><a th:href="@{/training/numbers}">Numbers</a></li>
+						<li><a th:href="@{/training/numbers}" id="training">Numbers</a></li>
 						<li><a th:href="@{/training/conjugation}">Conjugate verb</a></li>
 						<li><a th:href="@{/training/verbtable}">Verb table</a></li>
 					</ul></li>
-				<li sec:authorize="isAuthenticated()"><span class="opener">Custom</span>
+				<li sec:authorize="isAuthenticated()"><span class="opener" id="menu-custom">Custom</span>
 					<ul>
-						<li><a th:href="@{/custom/cards}">Language cards</a></li>
+						<li><a th:href="@{/custom/cards}" id="custom">Language cards</a></li>
 					</ul></li>
 					
-				<li sec:authorize="hasRole('ADMIN')"><span class="opener">Admin</span>
+				<li sec:authorize="hasRole('ADMIN')"><span class="opener" id="menu-admin">Admin</span>
 					<ul>
 						<li><a th:href="@{/admin/adduser}">Add user</a></li>
 						<li><a th:href="@{/admin/userlist}">User list</a></li>

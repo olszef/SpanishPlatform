@@ -26,3 +26,26 @@ function forceSpanishLanguage(element) {
 		otherOptionElement.value = 1;
 	}
 }
+
+$(document).ready(function() {
+	
+	var menuItems = $('#menu li span');
+	
+	menuItems.on("click", function() {
+		
+		menuItems.each(function() {
+			localStorage.removeItem(this.id);
+		})
+		
+		if ($(this).hasClass("active")) {
+			localStorage.setItem(this.id, "active");
+		}
+    });
+	
+	menuItems.each(function() {
+		if (localStorage.getItem(this.id) != null) {
+			$(this).addClass("active");
+			localStorage.removeItem(this.id);
+		}
+	});
+});

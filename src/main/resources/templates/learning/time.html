@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Time</h1>
+									</header>
+									
+									<p>In Spain on a daily basis we typically use 12-hour system. However, we can also use the full 24-hour, but it is usually used only in offical communication, like for example in different schedules.</p>
+									<p>To talk about time we need to construct the information from a few parts. It would be also good to know how to ask for the time. Have a look below to find all that you need.</p>
+
+									<hr class="major" />
+
+									<h2>What time is it?</h2>
+									<p>To ask for time we can use the following question:</p>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<ul>
+												<li>¿Qué hora es?</li>
+												<li>¿Tiene hora?</li>												
+											</ul>											
+										</div>
+									</div>
+									
+									<h2>Talk about hours</h2>
+									
+									<h3>Sentence construction</h3>
+									<p>Talking about hours we use:</p>
+									<ol>
+										<li>													
+											<span>the verb <b>SER</b> in only two forms:</span>
+											<ul>
+												<li><b>es</b> - when talking about the hour "one"</li>
+												<li><b>son</b> - when talking about all other hours</li>
+											</ul>
+										</li>
+										<li>													
+											<span><b>definite articles</b> in feminine gender before the numeral:</span>
+											<ul>
+												<li><b>la</b> - when talking about the hour "one"</li>
+												<li><b>las</b> - when talking about all other hours</li>
+											</ul>
+										</li>
+										<li>													
+											<span><b>cardinal numeral</b> in feminine gender to represent the hour:</span>
+											<ul>
+												<li><b>una</b> / <b>dos</b> /<b>très</b> / etc. </li>
+											</ul>
+										</li>
+										<li>													
+											<span><b>conjunctions</b> to talk about minutes:</span>
+											<ul>
+												<li>current hour + <b>en punto</b> + number - when it is exactly the given hour</li>
+												<li>current hour + <b>y</b> + number - to talk about minutes from 1 to 30</li>
+												<li>next hour + <b>menos</b> + number - to talk about minutes from 31 to 59</li>
+											</ul>
+										</li>																				
+										<li>													
+											<span><b>part of the day</b> if the context doesn't allow to define it:</span>
+											<ul>
+												<li>de la mañana - in the morning</li>
+												<li>del mediodía - at noon</li>
+												<li>de la tarde - in the afternoon</li>
+												<li>de la noche - at night</li>
+												<li>del medianoche - at midnight</li>
+											</ul>
+										</li>
+									</ol>
+									
+									<h3>Examples</h3>
+									<p>Following are some examples:</p>																	
+									<ul>
+										<li><b>13:13</b> - Es la una y trece de la tarde.</li>
+										<li><b>08:56</b> - Son las nueve menos cuatro de la mañana.</li>
+										<li><b>17:00</b> - Son las cinco en punto.</li>
+									</ul>
+																																																		
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

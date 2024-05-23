@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Verbs</h1>
+									</header>
+									
+									<p>Verbs are words that show an action (to sing), occurrence (to develop), or state of being (to exist).</p>
+									<p>In Spanish we have the verbs occuring with 3 different suffixes: <b>-AR</b>, <b>-ER</b>, <b>-IR</b>. Each suffix has different rules of conjugation. Below you can see how to conjugate the regular verbs in present tense (presente de indicativo).</p>
+
+									<hr class="major" />
+
+									<h2>Conjugation I - AR</h2>
+									<h3>Suffixes for each person / number:</h3>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>Yo: <b>-o</b></li>
+												<li>Tú: <b>-as</b></li>
+												<li>Él/Ella/Usted: <b>-a</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>Nosotros/as: <b>-amos</b></li>
+												<li>Vosotros/as: <b>-áis</b></li>
+												<li>Ellos/Ellas/Ustedes: <b>-an</b></li>
+											</ul>											
+										</div>
+									</div>
+									
+									<h3>Example - BAILAR:</h3>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>Yo bail<b>o</b></li>
+												<li>Tú bail<b>as</b></li>
+												<li>Él bail<b>a</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>Nosotros bail<b>amos</b></li>
+												<li>Vosotros bail<b>áis</b></li>
+												<li>Ellos bail<b>an</b></li>
+											</ul>											
+										</div>
+									</div>									
+
+									<h2>Conjugation II - ER</h2>
+									<h3>Suffixes for each person / number:</h3>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>Yo: <b>-o</b></li>
+												<li>Tú: <b>-es</b></li>
+												<li>Él/Ella/Usted: <b>-e</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>Nosotros/as: <b>-emos</b></li>
+												<li>Vosotros/as: <b>-éis</b></li>
+												<li>Ellos/Ellas/Ustedes: <b>-en</b></li>
+											</ul>											
+										</div>
+									</div>
+									
+									<h3>Example - BEBER:</h3>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>Yo beb<b>o</b></li>
+												<li>Tú beb<b>es</b></li>
+												<li>Él beb<b>e</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>Nosotros beb<b>emos</b></li>
+												<li>Vosotros beb<b>éis</b></li>
+												<li>Ellos beb<b>en</b></li>
+											</ul>											
+										</div>
+									</div>
+									
+									<h2>Conjugation III - IR</h2>
+									<h3>Suffixes for each person / number:</h3>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>Yo: <b>-o</b></li>
+												<li>Tú: <b>-es</b></li>
+												<li>Él/Ella/Usted: <b>-e</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>Nosotros/as: <b>-imos</b></li>
+												<li>Vosotros/as: <b>-ís</b></li>
+												<li>Ellos/Ellas/Ustedes: <b>-en</b></li>
+											</ul>											
+										</div>
+									</div>
+									
+									<h3>Example - VIVIR:</h3>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>Yo viv<b>o</b></li>
+												<li>Tú viv<b>es</b></li>
+												<li>Él viv<b>e</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>Nosotros viv<b>emos</b></li>
+												<li>Vosotros viv<b>ís</b></li>
+												<li>Ellos viv<b>en</b></li>
+											</ul>											
+										</div>
+									</div>																																																		
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

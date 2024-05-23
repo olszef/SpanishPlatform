@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Articles and nouns</h1>
+									</header>
+									
+									<p>Nouns are of course words that name objects, places, animals, people or feelings. They change their suffixes depending on gender and number.</p>
+									<p>Articles (los artículos) are words that we put before a noun to define it better. In Spanish there are definite and indefinite articles (los artículos determinados y indeterminados). They also point if the gender of the noun (masculine or feminine) and the number (singular or plural).</p>
+
+									<hr class="major" />
+
+									<h2>Articles</h2>
+									<h3>Definite articles</h3>
+									<p>We use definite articles when we know the object or the person that we describe or when we talk about something another time. Look below to see how we use them.</p>
+									<div class="row">
+										<div class="col-6 col-12-small">				
+											<h4>Singular</h4>
+											<ul>
+												<li>masculine: <b>el</b></li>
+												<li>feminine: <b>el</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>masculine: <b>los</b></li>
+												<li>feminine: <b>las</b></li>
+											</ul>											
+										</div>
+									</div>
+									
+									<h3>Indefinite articles</h3>
+									<p>We use indefinite articles when we don't know the object or the person that we describe or when we talk about something for the first time. Look below to see how we use them.</p>
+									<div class="row">		
+										<div class="col-6 col-12-small">											
+											<h4>Singular</h4>
+											<ul>
+												<li>masculine: <b>un</b></li>
+												<li>feminine: <b>una</b></li>
+											</ul>
+											<h4>Plural</h4>
+											<ul>
+												<li>masculine: <b>unos</b></li>
+												<li>feminine: <b>unas</b></li>
+											</ul>
+										</div>													
+									</div>									
+
+									<hr class="major" />
+
+									<h2>Nouns</h2>
+									<h3>Defining gender</h3>
+									<p><i>Masculine gender</i> of a noun is when:</p>
+									<ol>
+										<li>													
+											<span>ends with letter <b>-o</b>:</span>
+											<ul>
+												<li>el chic<b>o</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>nouns coming from Greek language ending with <b>-a</b>:</span>
+											<ul>
+												<li>el problem<b>a</b></li>
+												<li>el planet<b>a</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>ends with a consonant, e.g. <b>-t</b> or <b>-r</b>:</span>
+											<ul>
+												<li>el challe<b>t</b></li>
+												<li>el docto<b>r</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>ends with suffix <b>-aje</b>:</span>
+											<ul>
+												<li>el gar<b>aje</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>ends with suffix <b>-ón</b>:</span>
+											<ul>
+												<li>el coraz<b>ón</b></li>
+											</ul>
+										</li>
+									</ol>																																														
+
+									<p><i>Feminine gender</i> of a noun is when:</p>
+									<ol>
+										<li>													
+											<span>ends with letter <b>-a</b>:</span>
+											<ul>
+												<li>la chic<b>a</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>ends with suffix <b>-dad</b> or <b>-tad</b>:</span>
+											<ul>
+												<li>la ciu<b>dad</b></li>
+												<li>la liber<b>tad</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>ends with suffix <b>-ción</b> or <b>-sión</b>:</span>
+											<ul>
+												<li>la situa<b>ción</b></li>
+												<li>la televi<b>sión</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>ends with suffix <b>-ud</b>:</span>
+											<ul>
+												<li>la juvent<b>ud</b></li>
+											</ul>
+										</li>												
+									</ol>																																	
+									
+									<h3>Defining number</h3>
+									<p>To create a plural number of a noun we need to add a proper suffix to it.</p>
+									<ol>
+										<li>													
+											<span>If the word ends with a vowel, we add letter <b>-s</b> at the end:</span>
+											<ul>
+												<li>el chico - los chico<b>s</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>If the word ends with a consonant, we add letters <b>-es</b> at the end. Additionally, if before the "s" there is an accented vowel, in plural it looses the accent:</span>
+											<ul>
+												<li>el profesor - los profesor<b>es</b></li>
+												<li>el autobús - los autobus<b>es</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>If the word ends with letter <b>-í</b> or <b>-ú</b>, we add letters <b>-es</b> at the end:</span>
+											<ul>
+												<li>el esquí - los esquí<b>es</b></li>
+											</ul>
+										</li>
+										<li>													
+											<span>If the word ends with letter an accented vowel different than <b>-í</b> and <b>-ú</b>, the last letter looses the accent and we add letter <b>-s</b> at the end:</span>
+											<ul>
+												<li>el sofá - los sof<b>as</b></li>
+											</ul>
+										</li>																																				
+										<li>													
+											<span>If the word ends with letter <b>-s</b>, then it stays without any change:</span>
+											<ul>
+												<li>el lunes - los lunes</li>
+											</ul>
+										</li>
+										<li>													
+											<span>If the word ends with letter <b>-z</b>, the -z changes to <b>-c</b> and we add the suffix <b>-es</b>:</span>
+											<ul>
+												<li>el arroz - los arro<b>ces</b></li>
+											</ul>
+										</li>												
+									</ol>																																										
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

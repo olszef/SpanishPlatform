@@ -6,20 +6,7 @@
 </head>
 <body>
 	<header id="header" th:fragment="header_frag">
-		<a href="index.html" class="logo"><strong>Editorial</strong> by
-			HTML5 UP</a>
-		<ul class="icons">
-			<li><a href="#" class="icon brands fa-twitter"><span
-					class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon brands fa-facebook-f"><span
-					class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon brands fa-snapchat-ghost"><span
-					class="label">Snapchat</span></a></li>
-			<li><a href="#" class="icon brands fa-instagram"><span
-					class="label">Instagram</span></a></li>
-			<li><a href="#" class="icon brands fa-medium-m"><span
-					class="label">Medium</span></a></li>
-		</ul>
+		<a href="index.html" class="logo"><strong>Spanish Learning Platform</strong> - your place for studying</a>
 	</header>
 
 	<div class="inner" th:fragment="sidebar_frag">
@@ -53,10 +40,10 @@
 				<li><a th:href="@{/}">Start</a></li>
 				<li><span class="opener" id="menu-learning">Learning</span>
 					<ul>
-						<li><a href="#">Articles and nouns</a></li>
-						<li><a href="#">Verbs</a></li>
-						<li><a href="#">Numbers</a></li>
-						<li><a href="#">Time</a></li>
+						<li><a th:href="@{/learning/nouns}">Articles and nouns</a></li>
+						<li><a th:href="@{/learning/verbs}">Verbs</a></li>
+						<li><a th:href="@{/learning/numbers}">Numbers</a></li>
+						<li><a th:href="@{/learning/time}">Time</a></li>
 					</ul></li>
 				<li><span class="opener" id="menu-tools">Tools</span>
 					<ul>

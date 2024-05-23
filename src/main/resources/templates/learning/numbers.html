@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Numbers</h1>
+									</header>
+									
+									<p>Numerals are words to describe quantity, they are used in counting and calculations, as well as defining the order.</p>
+									<p>We can distinguish caridnal numerals and oridnal numerals.</p>
+
+									<hr class="major" />
+
+									<h2>Caridnal numerals</h2>
+									<h3>Basic numbers</h3>
+									<p>Most important numerals from which also other numerals can be made are listed below:</p>
+									<ul class="alt">
+										<li>0 - zero</li>
+										<li>1 - uno</li>
+										<li>2 - dos</li>
+										<li>3 - tres</li>
+										<li>4 - cuatro</li>
+										<li>5 - cinco</li>
+										<li>6 - seis</li>
+										<li>7 - siete</li>
+										<li>8 - ocho</li>
+										<li>9 - nueve</li>
+										<li>10 - diez</li>
+										<li>11 - once</li>
+										<li>12 - doce</li>
+										<li>13 - trece</li>
+										<li>14 - catorce</li>
+										<li>15 - quince</li>
+										<li>16 - dieciséis</li>
+										<li>17 - diecisiete</li>
+										<li>18 - dieciocho</li>
+										<li>19 - diecinueve</li>
+										<li>20 - veinte</li>
+										<li>21 - veintiuni</li>
+										<li>30 - treinta</li>
+										<li>40 - cuarenta</li>
+										<li>50 - cincuenta</li>
+										<li>60 - sesenta</li>
+										<li>70 - setenta</li>
+										<li>80 - ochenta</li>
+										<li>90 - noventa</li>
+										<li>100 - cien</li>
+										<li>200 - dosscientos</li>
+										<li>500 - quinientos</li>
+										<li>1000 - mil</li>
+										<li>2000 - dos mil</li>
+										<li>1000000 - un millón</li>										
+									</ul>
+									
+									<h3>Rules for cardinal numerals</h3>
+									<p>In masculine gender before the noun the form <b>uno</b> shortens to <b>un</b>. In feminine gender the suffix <b>-o</b> changes to <b>-a</b>:</p>									
+									<ul>
+										<li>un caso</li>
+										<li>una lista</li>
+									</ul>
+
+									<p>Numerals between 20 and 30 are created with a modified numeral of tens number (<b>veinti</b>) and a numeral from 1 to 9:</p>									
+									<ul>
+										<li>21 - veintiuno</li>
+										<li>26 - veintiseis</li>
+									</ul>
+
+									<p>Numerals between 30 and 100 are created with a numeral of tens number and a numeral from 1 to 9 using the conjunction <b>y</b>:</p>									
+									<ul>
+										<li>47 - cuarenta y siete</li>
+										<li>55 - cincuenta y cinco</li>
+									</ul>
+									
+									<p>We put the conjunction <b>y</b> only between the tens numbers and the numerals 1-9:</p>									
+									<ul>
+										<li>1745 - mil sietesientos cuarenta y cinco</li>
+									</ul>																											
+									
+									<h2>Ordinal numerals</h2>
+									<h3>Basic numbers</h3>
+									<p>Most important numerals from which also other numerals can be made are listed below:</p>
+									<ul class="alt">
+										<li>1 - primero</li>
+										<li>2 - segundo</li>
+										<li>3 - tercero</li>
+										<li>4 - cuarto</li>
+										<li>5 - quinto</li>
+										<li>6 - sexto</li>
+										<li>7 - séptimo</li>
+										<li>8 - octavo</li>
+										<li>9 - noveno</li>
+										<li>10 - decimo</li>
+									</ul>
+
+									<h3>Rules for ordinal numerals</h3>
+									<p>They can be placed after or before the noun (more common):</p>									
+									<ul>
+										<li>Es mi segundo móvil.</li>
+									</ul>
+									
+									<p>They relate to the number and gender of the noun:</p>									
+									<ul>
+										<li>Segund<b>a</b> noche</li>
+										<li>Cuart<b>o</b> participante</li>
+									</ul>
+									
+									<p>Numerals <b>primero</b> and <b>tercero</b> shorten to the forms <b>primer</b> and <b>tercer</b> if they are placed before a noun:</p>									
+									<ul>
+										<li>El tiene un <b>tercer</b> perro.</li>
+									</ul>																																																																				
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

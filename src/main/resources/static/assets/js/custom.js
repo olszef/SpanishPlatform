@@ -29,20 +29,23 @@ function forceSpanishLanguage(element) {
 
 $(document).ready(function() {
 	
-	var menuItems = $('#menu li span');
+	var menuTabsAll = $('#menu li span');
+	var menuItems = $("#menu > ul > li > ul > li > a");
 	
 	menuItems.on("click", function() {
 		
-		menuItems.each(function() {
-			localStorage.removeItem(this.id);
+		menuTab = $(this).parent().parent().prev();
+		
+		menuTabsAll.each(function() {
+			localStorage.removeItem(menuTab.attr("id"));
 		})
 		
-		if ($(this).hasClass("active")) {
-			localStorage.setItem(this.id, "active");
+		if (menuTab.hasClass("active")) {
+			localStorage.setItem(menuTab.attr("id"), "active");
 		}
     });
 	
-	menuItems.each(function() {
+	menuTabsAll.each(function() {
 		if (localStorage.getItem(this.id) != null) {
 			$(this).addClass("active");
 			localStorage.removeItem(this.id);

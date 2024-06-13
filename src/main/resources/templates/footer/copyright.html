@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/general.html :: headerfiles">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<div th:insert="fragments/general.html :: header_frag"></div>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Credits & Copyright</h1>
+									</header>
+									
+									<h2>Credits</h2>
+									<h3>HTML template</h3>									
+									<p>
+									    This website uses a template titled "Editorial" created by AJ (HTML5 UP). 
+									    <br>© HTML5 UP. Licensed under the <a href="https://html5up.net/license">Creative Commons Attribution 3.0 License</a>.
+									    <br>You can find the original template <a href="https://html5up.net/editorial">here</a>.
+									    <br>Modified by Mateusz for this website - various changes to layout, naming, functionality.
+									    <br><em>Disclaimer: The original creator does not endorse any modifications made to the template.</em>									    
+									</p>
+									
+									<h3>Icons</h3>
+									<p>
+									    This website uses icons from the Font Awesome library (Font Awesome Free), delivered along with the HTML template. 
+									    <br>Licensed under the <a href="https://fontawesome.com/license/free">Font Awesome Free License</a> (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License).
+									    <br>You can find the original library <a href="https://fontawesome.com/">here</a>.								    
+									</p>
+									
+									<h3>Images</h3>
+									<p>
+									    Rest of the images are AI generated.								    
+									</p>
+									
+									<h6>Disclaimer</h3>
+									<p>
+									    <em>This website is created solely for educational and self-development purposes. It is not	commercialy used.</em>					    
+									</p>																																				
+																																																																				
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar" th:insert="fragments/general.html :: sidebar_frag"></div>
+			</div>
+
+		<!-- Scripts -->
+			<div th:insert="fragments/general.html :: scripts_frag"></div>
+
+	</body>
+</html>

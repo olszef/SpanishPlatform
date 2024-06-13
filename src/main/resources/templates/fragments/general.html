@@ -1,12 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerfiles">
-<meta charset="UTF-8" />
-<link th:href="@{/css/styles.css}" rel="stylesheet">
+<head>
+	<th:block th:fragment="headerfiles">
+		<title>Spanish Learning Platform</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	</th:block>
 </head>
 <body>
 	<header id="header" th:fragment="header_frag">
-		<a href="index.html" class="logo"><strong>Spanish Learning Platform</strong> - your place for studying</a>
+		<a th:href="@{/index}" class="logo"><strong>Spanish Learning Platform</strong> - your place for studying</a>
 	</header>
 
 	<div class="inner" th:fragment="sidebar_frag">
@@ -68,6 +72,20 @@
 					</ul></li>				
 			</ul>
 		</nav>
+		
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">
+				<a th:href="@{/footer/terms}">Terms of use</a>	
+				<br><a th:href="@{/footer/privacy}">Privacy and cookies</a>
+				<br><a th:href="@{/footer/copyright}">Credits & Copyright</a>
+				<br>
+				<br>&copy; 2024 Spanish Learning Platform.
+				<br>All rights reserved.
+				<br>Design: <a href="https://html5up.net">HTML5 UP</a>.
+				<br>Adapted from "Editorial" template by Mateusz.
+			</p>		
+		</footer>
 	</div>
 	
 	<div th:fragment="scripts_frag">

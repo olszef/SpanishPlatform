@@ -1,10 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Editorial by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" th:href="@{/assets/css/user_main.css}" />
+	<head th:include="fragments/general.html :: headerfiles">
 	</head>
 	<body class="is-preload">
 
@@ -56,8 +52,8 @@
 									  		<div id="cards-container" class="center-object">
 									  			<div th:id="${'card' + iStat.index}" class="box card-box-params" th:each="card, iStat : ${existingLanguageCards}" th:classappend="${iStat.index > 0 ? 'removed-element' : ''}" onclick="toggleHidden(this)">
 													<ul class="icons">
-														<li class="icon li-icon removed-element"><img src="/images/worldwide.png" class="img-icon-size" /></li>
-														<li class="icon li-icon"><img src="/images/spain-flag.png" class="img-icon-size" /></li>
+														<li class="icon li-icon removed-element"><img src="/images/card-world.png" class="img-icon-size" /></li>
+														<li class="icon li-icon"><img src="/images/card-spain.png" class="img-icon-size" /></li>
 													</ul>									  				
 									  				<p th:name="${'card' + iStat.index + 1 + 'Spanish'}" th:text="${card.spanishWord}" />
 									  				<p th:name="${'card' + iStat.index + 1 + 'Translation'}" th:text="${card.translation}" class="removed-element" />

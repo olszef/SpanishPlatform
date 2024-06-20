@@ -44,7 +44,7 @@ public class AdminController {
 		}
 
 		try {
-			userService.createNewUser(userForm.getUserFormName(), userForm.getUserFormUsername(), userForm.getUserFormEmail(), userForm.getUserFormIsAdmin());
+			userService.createNewUser(userForm.getUserFormName(), userForm.getUserFormUsername(), userForm.getUserFormEmail(), userForm.getUserFormPassword(), userForm.getUserFormIsAdmin());
 			theModel.addAttribute("returnTitle", "New user created!");
 		} catch (Exception e) {
 			theModel.addAttribute("returnTitle", "Error while creating new user");

@@ -17,6 +17,9 @@ public class UserForm {
 	@NotBlank(message = "Email cannot be empty")
 	private String userFormEmail;
 	
+	@NotBlank(message = "Password cannot be empty")
+	private String userFormPassword;
+	
 	private boolean isEmailChangeable = false;
 	
 	private Boolean userFormIsAdmin = false;
@@ -43,6 +46,14 @@ public class UserForm {
 
 	public void setUserFormEmail(String userFormEmail) {
 		this.userFormEmail = userFormEmail;
+	}
+
+	public String getUserFormPassword() {
+		return userFormPassword;
+	}
+
+	public void setUserFormPassword(String userFormPassword) {
+		this.userFormPassword = userFormPassword;
 	}
 
 	public boolean isNameChangeable() {

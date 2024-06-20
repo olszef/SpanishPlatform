@@ -40,16 +40,21 @@
 													<!-- Break -->														
 													<div class="col-12">
 														<label for="user-form-email">Email</label>
-														<input type="text" th:field="*{userFormEmail}" id="user-form-email" th:value="*{userFormEmail}" th:readonly="*{!isEmailChangeable}" required/>
+														<input type="email" th:field="*{userFormEmail}" id="user-form-email" th:value="*{userFormEmail}" th:readonly="*{!isEmailChangeable}" required/>
 														<p th:if="${#fields.hasErrors('userFormEmail')}" th:errors="*{userFormEmail}" class="error-message">Email cannot be empty</p>
-													</div>												
+													</div>
+													<!-- Break -->														
+													<div class="col-12" th:if="${userFormNewUser}">
+														<label for="user-form-email">Initial Password</label>
+														<input type="password" th:field="*{userFormPassword}" id="user-form-password" th:value="*{userFormPassword}" required/>
+														<p th:if="${#fields.hasErrors('userFormPassword')}" th:errors="*{userFormPassword}" class="error-message">Password cannot be empty</p>
+													</div>																									
 													<!-- Break -->
 													<div class="col-12" th:if="${userFormNewUser}">														
 														<input type="checkbox" id="user-form-isadmin" th:field="*{userFormIsAdmin}">
 														<label for="user-form-isadmin">Admin rights</label>															
 													</div>												
 													<!-- Break -->													
-													<p th:if="${userFormNewUser}">Initial password is set to: <code><b>Username</b> + <b>123!</b></code></p>
 													<div class="col-12">
 														<ul class="actions">
 															<li><input type="submit" value="Save Data" class="primary" /></li>

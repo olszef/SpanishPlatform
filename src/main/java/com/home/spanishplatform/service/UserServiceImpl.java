@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public void createNewUser(final String newName, final String newUsername, final String newEmail, final boolean isAdmin) {
+    public void createNewUser(final String newName, final String newUsername, final String newEmail, final String initialPassword, final boolean isAdmin) {
     	User user = userRepository.findByEmail(newEmail);
     	
         if (user != null) {
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     	user = new User();
     	user.setName(newName);
     	user.setUsername(newUsername);
-    	user.setPassword(passwordEncoder.encode(newUsername + "123!"));
+    	user.setPassword(passwordEncoder.encode(initialPassword));
     	user.setEmail(newEmail);
     	user.setLastLogin(LocalDateTime.parse("0001-01-01 01:01:01", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     	user.setRoles(allRoles);

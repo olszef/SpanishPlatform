@@ -1,0 +1,39 @@
+.card-box-params {
+	width: 100%;
+	margin-top: 2em;
+	font-size: 2em;
+	display: inline-block;
+	padding-bottom: 0 !important;
+}
+
+.card-box-params p {
+	margin-bottom: 0;
+}
+
+.card-box-subscript {
+	font-size: 0.2em;
+}
+
+.removed-element {
+	display: none !important;
+}
+
+.img-icon-size {
+	height: 1.25em;
+}
+
+.li-icon {
+	padding: 0 !important;
+}
+
+.icon-center-left {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.icon-center-right {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+}

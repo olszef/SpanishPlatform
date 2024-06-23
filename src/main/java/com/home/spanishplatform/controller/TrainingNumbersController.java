@@ -31,7 +31,7 @@ public class TrainingNumbersController {
 	public String trainNumbers(Model theModel) {
 		trainingStatus = "ready";
 		theModel.addAttribute("trainingStatus", trainingStatus);
-		return "training/numbers";
+		return "training/training_numbers";
 	}
 
 	@GetMapping(value="/getList", params="action=draw")
@@ -51,7 +51,7 @@ public class TrainingNumbersController {
 		theModel.addAttribute("rangeFrom", rangeFrom);
 		theModel.addAttribute("rangeTo", rangeTo);
 		theModel.addAttribute("trainingStatus", trainingStatus);		
-		return "training/numbers";
+		return "training/training_numbers";
 	}
 	
 	@GetMapping(value="/getList", params="action=range")
@@ -71,7 +71,7 @@ public class TrainingNumbersController {
 		theModel.addAttribute("rangeFrom", rangeFrom);
 		theModel.addAttribute("rangeTo", rangeTo);
 		theModel.addAttribute("trainingStatus", trainingStatus);
-		return "training/numbers";
+		return "training/training_numbers";
 	}
 	
 	@GetMapping("/checkAnswers")
@@ -108,7 +108,7 @@ public class TrainingNumbersController {
 		
 		theModel.addAttribute("trainingNumbersForm", trainingNumbersForm);
 		theModel.addAttribute("trainingStatus", trainingStatus);
-		return "training/numbers";
+		return "training/training_numbers";
 	}
 
 

@@ -143,7 +143,7 @@ public class UserController {
 			return "redirect:/login";
 		}
 		
-		if (result.hasErrors()) {
+		if (result.hasFieldErrors("userFormName") || result.hasFieldErrors("userFormUsername")) {
 			return "user/user_form";
 		}
 		

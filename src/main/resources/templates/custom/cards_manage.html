@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head th:include="fragments/general.html :: headerfiles">
+	<head>
+		<th:block th:replace="fragments/general.html :: headerfiles"></th:block>
 		<link rel="stylesheet" th:href="@{/assets/css/form_main.css}" />
 	</head>
 	<body class="is-preload">

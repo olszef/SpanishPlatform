@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head th:include="fragments/general.html :: headerfiles">
+	<head>
+		<th:block th:replace="fragments/general.html :: headerfiles"></th:block>
 		<link rel="stylesheet" th:href="@{/assets/css/dictionary.css}">
 	</head>
 	<body class="is-preload">
@@ -66,8 +67,8 @@
 										<span>Translation for </span><span th:text="${translationSearch.wordText}" />
 									</div>
 									<table class="table table-bordered table-striped">					
-										<tbody th:each="translatedWord : ${translatedWords}">										
-											<tr>				
+										<tbody>										
+											<tr th:each="translatedWord : ${translatedWords}">				
 												<td th:text="${translatedWord.wordText}" />					
 											</tr>						
 										</tbody>		

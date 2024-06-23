@@ -7,7 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="language")
 public class Language {
 	
@@ -21,39 +30,6 @@ public class Language {
 	
 	@Column(name="language_text")
 	private String languageText;
-	
-	public Language() {}
-
-	public Language(int languageId, String languageCode, String languageText) {
-		super();
-		this.languageId = languageId;
-		this.languageCode = languageCode;
-		this.languageText = languageText;
-	}
-
-	public int getLanguageId() {
-		return languageId;
-	}
-
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
-	}
-
-	public String getLanguageCode() {
-		return languageCode;
-	}
-
-	public void setLanguageCode(String languageCode) {
-		this.languageCode = languageCode;
-	}
-
-	public String getLanguageText() {
-		return languageText;
-	}
-
-	public void setLanguageText(String languageText) {
-		this.languageText = languageText;
-	}
 
 	@Override
 	public String toString() {

@@ -8,7 +8,16 @@ import javax.persistence.Table;
 
 import com.home.spanishplatform.entity.keys.VerbMappingId;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @IdClass(VerbMappingId.class)
 @Table(name="verb_mapping")
 public class VerbMapping {
@@ -20,29 +29,4 @@ public class VerbMapping {
 	@Id
 	@Column(name="verb_id")
 	private int verbId;
-
-	public VerbMapping() {
-	}
-
-	public VerbMapping(int wordId, int verbId) {
-		super();
-		this.wordId = wordId;
-		this.verbId = verbId;
-	}
-
-	public int getWordId() {
-		return wordId;
-	}
-
-	public void setWordId(int wordId) {
-		this.wordId = wordId;
-	}
-
-	public int getVerbId() {
-		return verbId;
-	}
-
-	public void setVerbId(int verbId) {
-		this.verbId = verbId;
-	}
 }

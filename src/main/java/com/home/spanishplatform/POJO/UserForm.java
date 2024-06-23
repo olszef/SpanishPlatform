@@ -2,6 +2,11 @@ package com.home.spanishplatform.POJO;
 
 import javax.validation.constraints.NotBlank;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UserForm {
 	
 	@NotBlank(message = "Name cannot be empty")
@@ -23,68 +28,4 @@ public class UserForm {
 	private boolean isEmailChangeable = false;
 	
 	private Boolean userFormIsAdmin = false;
-
-	public String getUserFormName() {
-		return userFormName;
-	}
-
-	public void setUserFormName(String userFormName) {
-		this.userFormName = userFormName;
-	}
-
-	public String getUserFormUsername() {
-		return userFormUsername;
-	}
-
-	public void setUserFormUsername(String userFormUsername) {
-		this.userFormUsername = userFormUsername;
-	}
-
-	public String getUserFormEmail() {
-		return userFormEmail;
-	}
-
-	public void setUserFormEmail(String userFormEmail) {
-		this.userFormEmail = userFormEmail;
-	}
-
-	public String getUserFormPassword() {
-		return userFormPassword;
-	}
-
-	public void setUserFormPassword(String userFormPassword) {
-		this.userFormPassword = userFormPassword;
-	}
-
-	public boolean isNameChangeable() {
-		return isNameChangeable;
-	}
-
-	public void setNameChangeable(boolean isNameChangeable) {
-		this.isNameChangeable = isNameChangeable;
-	}
-
-	public boolean isUsernameChangeable() {
-		return isUsernameChangeable;
-	}
-
-	public void setUsernameChangeable(boolean isUsernameChangeable) {
-		this.isUsernameChangeable = isUsernameChangeable;
-	}
-
-	public boolean isEmailChangeable() {
-		return isEmailChangeable;
-	}
-
-	public void setEmailChangeable(boolean isEmailChangeable) {
-		this.isEmailChangeable = isEmailChangeable;
-	}
-
-	public Boolean getUserFormIsAdmin() {
-		return userFormIsAdmin;
-	}
-
-	public void setUserFormIsAdmin(Boolean userFormIsAdmin) {
-		this.userFormIsAdmin = userFormIsAdmin;
-	}
 }

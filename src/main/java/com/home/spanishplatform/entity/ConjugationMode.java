@@ -7,7 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="conjugation_mode")
 public class ConjugationMode {
 	
@@ -18,34 +27,4 @@ public class ConjugationMode {
 
 	@Column(name="mode_text")
 	private String modeText;
-	
-	public ConjugationMode() {}
-
-	public ConjugationMode(int modeId, String modeText) {
-		super();
-		this.modeId = modeId;
-		this.modeText = modeText;
-	}
-
-	public int getModeId() {
-		return modeId;
-	}
-
-	public void setModeId(int modeId) {
-		this.modeId = modeId;
-	}
-
-	public String getModeText() {
-		return modeText;
-	}
-
-	public void setModeText(String modeText) {
-		this.modeText = modeText;
-	}
-
-	@Override
-	public String toString() {
-		return "ConjugationMode [modeId=" + modeId + ", modeText=" + modeText + "]";
-	}
-
 }

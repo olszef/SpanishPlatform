@@ -2,32 +2,24 @@ package com.home.spanishplatform.POJO;
 
 import com.home.spanishplatform.entity.NumberName;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TrainingNumber {
 	private NumberName numberName;
 	private boolean isNumberChecked;
 	private boolean isNumberCorrectlyNamed;
 
-	public TrainingNumber() {
-	}
-
 	public TrainingNumber(int numberValue) {
 		this.numberName = new NumberName(numberValue, "");
 		this.isNumberChecked = false;
 		this.isNumberCorrectlyNamed = false;
-	}
-
-	public TrainingNumber(NumberName numberName, boolean isNumberChecked, boolean isNumberCorrectlyNamed) {
-		this.numberName = numberName;
-		this.isNumberChecked = isNumberChecked;
-		this.isNumberCorrectlyNamed = isNumberCorrectlyNamed;
-	}
-
-	public NumberName getNumberName() {
-		return numberName;
-	}
-
-	public void setNumberName(NumberName numberName) {
-		this.numberName = numberName;
 	}
 
 	public int getNumberId() {
@@ -44,21 +36,5 @@ public class TrainingNumber {
 
 	public void setNumberText(String numberText) {
 		this.numberName.setNumberText(numberText);;
-	}
-
-	public boolean isNumberChecked() {
-		return isNumberChecked;
-	}
-
-	public void setNumberChecked(boolean isNumberChecked) {
-		this.isNumberChecked = isNumberChecked;
-	}
-
-	public boolean isNumberCorrectlyNamed() {
-		return isNumberCorrectlyNamed;
-	}
-
-	public void setNumberCorrectlyNamed(boolean isNumberCorrectlyNamed) {
-		this.isNumberCorrectlyNamed = isNumberCorrectlyNamed;
 	}
 }

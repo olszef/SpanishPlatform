@@ -9,7 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="number_name")
 public class NumberName {
 	
@@ -20,30 +29,6 @@ public class NumberName {
 
 	@Column(name="number_text")
 	private String numberText;
-	
-	public NumberName() {}
-
-	public NumberName(int numberId, String numberText) {
-		super();
-		this.numberId = numberId;
-		this.numberText = numberText;
-	}
-
-	public int getNumberId() {
-		return numberId;
-	}
-
-	public void setNumberId(int numberId) {
-		this.numberId = numberId;
-	}
-
-	public String getNumberText() {
-		return numberText;
-	}
-
-	public void setNumberText(String numberText) {
-		this.numberText = numberText;
-	}
 
 	@Override
 	public String toString() {

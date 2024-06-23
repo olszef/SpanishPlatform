@@ -8,7 +8,16 @@ import javax.persistence.Table;
 
 import com.home.spanishplatform.entity.keys.ConjugationId;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @IdClass(ConjugationId.class)
 @Table(name="conjugation")
 public class Conjugation {
@@ -42,8 +51,6 @@ public class Conjugation {
 	
 	@Column(name="plural3")
 	private String plural3;
-	
-	public Conjugation() {}
 
 	public Conjugation(int verbId, int modeId, int tenseId) {
 		super();
@@ -51,98 +58,4 @@ public class Conjugation {
 		this.modeId = modeId;
 		this.tenseId = tenseId;
 	}
-
-	public Conjugation(int verbId, int modeId, int tenseId, String single1, String single2,
-			String single3, String plural1, String plural2, String plural3) {
-		super();
-		this.verbId = verbId;
-		this.modeId = modeId;
-		this.tenseId = tenseId;
-		this.single1 = single1;
-		this.single2 = single2;
-		this.single3 = single3;
-		this.plural1 = plural1;
-		this.plural2 = plural2;
-		this.plural3 = plural3;
-	}
-
-	public int getVerbId() {
-		return verbId;
-	}
-
-	public void setVerbId(int verbId) {
-		this.verbId = verbId;
-	}
-
-	public int getModeId() {
-		return modeId;
-	}
-
-	public void setModeId(int modeId) {
-		this.modeId = modeId;
-	}
-
-	public int getTenseId() {
-		return tenseId;
-	}
-
-	public void setTenseId(int tenseId) {
-		this.tenseId = tenseId;
-	}
-
-	public String getSingle1() {
-		return single1;
-	}
-
-	public void setSingle1(String single1) {
-		this.single1 = single1;
-	}
-
-	public String getSingle2() {
-		return single2;
-	}
-
-	public void setSingle2(String single2) {
-		this.single2 = single2;
-	}
-
-	public String getSingle3() {
-		return single3;
-	}
-
-	public void setSingle3(String single3) {
-		this.single3 = single3;
-	}
-
-	public String getPlural1() {
-		return plural1;
-	}
-
-	public void setPlural1(String plural1) {
-		this.plural1 = plural1;
-	}
-
-	public String getPlural2() {
-		return plural2;
-	}
-
-	public void setPlural2(String plural2) {
-		this.plural2 = plural2;
-	}
-
-	public String getPlural3() {
-		return plural3;
-	}
-
-	public void setPlural3(String plural3) {
-		this.plural3 = plural3;
-	}
-
-	@Override
-	public String toString() {
-		return "Conjugation [verbId=" + verbId + ", modeId=" + modeId
-				+ ", tenseId=" + tenseId + ", single1=" + single1 + ", single2=" + single2 + ", single3=" + single3
-				+ ", plural1=" + plural1 + ", plural2=" + plural2 + ", plural3=" + plural3 + "]";
-	}
-
 }

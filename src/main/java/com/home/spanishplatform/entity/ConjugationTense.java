@@ -8,7 +8,16 @@ import javax.persistence.Table;
 
 import com.home.spanishplatform.entity.keys.ConjugationTenseId;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @IdClass(ConjugationTenseId.class)
 @Table(name="conjugation_tense")
 public class ConjugationTense {
@@ -23,39 +32,6 @@ public class ConjugationTense {
 
 	@Column(name="tense_text")
 	private String tenseText;
-	
-	public ConjugationTense() {}
-
-	public ConjugationTense(int modeId, int tenseId, String tenseText) {
-		super();
-		this.modeId = modeId;
-		this.tenseId = tenseId;
-		this.tenseText = tenseText;
-	}
-
-	public int getModeId() {
-		return modeId;
-	}
-
-	public void setModeId(int modeId) {
-		this.modeId = modeId;
-	}
-	
-	public int getTenseId() {
-		return tenseId;
-	}
-
-	public void setTenseId(int tenseId) {
-		this.tenseId = tenseId;
-	}
-
-	public String getTenseText() {
-		return tenseText;
-	}
-
-	public void setTenseText(String tenseText) {
-		this.tenseText = tenseText;
-	}
 
 	@Override
 	public String toString() {

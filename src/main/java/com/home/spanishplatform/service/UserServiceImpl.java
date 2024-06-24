@@ -43,7 +43,11 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public void changeUserPassword(final int userId, final String newPassword) {
-        userRepository.changeUserPassword(userId, passwordEncoder.encode(newPassword));
+    	try {
+    		userRepository.changeUserPassword(userId, passwordEncoder.encode(newPassword));
+    	} catch (Exception e) {
+    		throw new CustomDatabaseException("Failed to update password for user with id: " + userId, e);
+    	}
     }
     
     @Override
@@ -51,7 +55,11 @@ public class UserServiceImpl implements UserService {
     	User newUser = myUserPrincipal.getUser();
     	newUser.setName(newName);
     	newUser.setUsername(newUsername);
-    	userRepository.save(newUser);
+    	try {
+    		userRepository.save(newUser);
+    	} catch (Exception e) {
+    		throw new CustomDatabaseException("Failed to save user data with id: " + newUser.getUserId(), e);
+    	}
     }
     
     @Override

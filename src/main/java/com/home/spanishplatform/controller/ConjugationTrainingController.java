@@ -120,8 +120,6 @@ public class ConjugationTrainingController {
     public List<ConjugationTense> getTenseDropdownOptions(@RequestParam String modeDropdownValue) {
         // Logic to determine the items of the second dropdown based on the first dropdown's value
     	return  conjugationService.findAllConjugationTensesPerMode(Integer.parseInt(modeDropdownValue));
-//        List<ConjugationTense> tenseList =  conjugationService.findAllConjugationTensesPerMode(Integer.parseInt(modeDropdownValue));
-//        return tenseList.stream().map(ConjugationTense::getTenseText).collect(Collectors.toList());
     }
 	
 	public void saveFormValuesAndStatusToModel(String status, ConjugationTrainingForm conjugationTrainingForm, Model theModel) {

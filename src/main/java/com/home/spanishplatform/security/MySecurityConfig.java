@@ -28,12 +28,6 @@ public class MySecurityConfig {
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
-    //TODO: delete
-    public String testEncoder(String rawText) {
-    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    	return passwordEncoder.encode(rawText);
-    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

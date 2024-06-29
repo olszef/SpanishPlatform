@@ -38,28 +38,27 @@ public class VerbTableController {
 		List<Conjugation> randomConjugations = new ArrayList<Conjugation>();
 		List<ConjugationMode> modeMap = conjugationService.findAllConjugationModes();
 		
-		//TODO: uncomment, cause hardcode of 1 is for testing
-//		int randomMode = (int)(Math.random() * modeMap.size()) + 1;
-		int randomMode = 0;
-		int randomModeId = modeMap.get(randomMode).getModeId();
-		
-		
-		List<ConjugationTense> tenseMap = conjugationService.findAllConjugationTensesPerMode(randomModeId);
-		
-		for (Verb verb : randomVerbs) {			
-			//TODO: uncomment, cause hardcode of 1 is for testing
-//			int randomTense = (int)(Math.random() * tenseMap.size()) + 1;
-			int randomTense = 0;
-			int randomTenseId = tenseMap.get(randomTense).getModeId();
-			Conjugation conjugation = conjugationService.findSingleConjugation(verb.getVerbId(), randomModeId, randomTenseId);		
-			randomConjugations.add(removeRandomConjugationForms(conjugation));
+		if (!modeMap.isEmpty()) {
+			int randomMode = (int)(Math.random() * modeMap.size());
+			int randomModeId = modeMap.get(randomMode).getModeId();			
+			
+			List<ConjugationTense> tenseMap = conjugationService.findAllConjugationTensesPerMode(randomModeId);
+			
+			if (!tenseMap.isEmpty()) {
+				for (Verb verb : randomVerbs) {			
+					int randomTense = (int)(Math.random() * tenseMap.size());
+					int randomTenseId = tenseMap.get(randomTense).getModeId();
+					Conjugation conjugation = conjugationService.findSingleConjugation(verb.getVerbId(), randomModeId, randomTenseId);		
+					randomConjugations.add(removeRandomConjugationForms(conjugation));
+				}
+				
+				generateStatus = "OK";
+				theModel.addAttribute("modeName", modeMap.get(randomMode).getModeText());
+				theModel.addAttribute("tenseMap", tenseMap);
+				theModel.addAttribute("randomConjugations", randomConjugations);
+			}
 		}
 		
-		generateStatus = "OK";
-		
-		theModel.addAttribute("modeName", modeMap.get(randomMode).getModeText());
-		theModel.addAttribute("tenseMap", tenseMap);
-		theModel.addAttribute("randomConjugations", randomConjugations);
 		theModel.addAttribute("searchStatus", generateStatus);
 		return "training/verb_table";
 	}

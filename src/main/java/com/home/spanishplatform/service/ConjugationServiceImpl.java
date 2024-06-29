@@ -94,7 +94,6 @@ public class ConjugationServiceImpl implements ConjugationService {
 
 	@Override
 	public Optional<Verb> findByVerbId(int verbId) {
-		// TODO Auto-generated method stub
 		return verbRepository.findById(verbId);
 	}
 	

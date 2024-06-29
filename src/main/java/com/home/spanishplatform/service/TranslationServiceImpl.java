@@ -77,7 +77,6 @@ public class TranslationServiceImpl implements TranslationService {
 
 	@Override
 	public Dictionary findVerbByLanguageAndText(int languageId, String wordText) {
-		// TODO Auto-generated method stub
 		return dictionaryRepository.findByLanguageIdAndWordTextAndSpeechPartId(languageId, wordText, 1);
 	}
 

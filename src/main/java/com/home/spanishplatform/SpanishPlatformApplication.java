@@ -2,10 +2,8 @@ package com.home.spanishplatform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-//@SpringBootApplication
-@SpringBootApplication(exclude={SecurityAutoConfiguration.class}) //TODO: disable spring security
+@SpringBootApplication
 public class SpanishPlatformApplication {
 
 	public static void main(String[] args) {

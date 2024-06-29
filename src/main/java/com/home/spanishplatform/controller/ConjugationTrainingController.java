@@ -98,7 +98,6 @@ public class ConjugationTrainingController {
 		
 		//initialize the verb forms
 		Optional<Verb> verbBaseForms = conjugationService.findByVerbId(spanishVerbId);
-		//TODO: make conjugation optional
 		Conjugation verbSingleConjugation = conjugationService.findSingleConjugation(spanishVerbId, conjugationTrainingForm.getSearchModeId(), conjugationTrainingForm.getSearchTenseId());
 
 		if (verbBaseForms.isPresent() && verbSingleConjugation != null) {
